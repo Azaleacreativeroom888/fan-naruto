@@ -3,156 +3,380 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NARUTO Fan Log</title>
+  <title>NARUTO FAN — 木ノ葉の里</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", sans-serif;
-      background-color: #994d00;
-      color: #eee;
+    /* Page-specific extras */
+    .features-section {
+      background: linear-gradient(180deg, transparent, rgba(255,107,0,0.03), transparent);
+    }
+    .featured-strip {
+      background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(201,79,0,0.05));
+      border-top: 1px solid rgba(255,107,0,0.2);
+      border-bottom: 1px solid rgba(255,107,0,0.2);
+      padding: 1.5rem 2rem;
+      overflow: hidden;
+    }
+    .ticker-wrap {
+      display: flex; gap: 4rem;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      font-family: var(--font-nav);
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      color: var(--orange);
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .ticker-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    /* Character cards with glow accent */
+    .char-card .card-thumb { position: relative; }
+    .char-glow {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .card:hover .char-glow { opacity: 1; }
+
+    /* Rank banner */
+    .rank-banner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,107,0,0.1);
+      border-bottom: 1px solid rgba(255,107,0,0.1);
+      margin: 2rem 0;
+    }
+    .rank-item { text-align: center; }
+    .rank-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--orange);
+      text-shadow: 0 0 24px rgba(255,107,0,0.4);
+      display: block; line-height: 1;
+    }
+    .rank-label {
+      font-family: var(--font-nav);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--cream-dark);
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-top: 0.4rem;
+      display: block;
+    }
+    .rank-sep {
+      width: 1px; height: 60px;
+      background: linear-gradient(180deg, transparent, rgba(255,107,0,0.3), transparent);
     }
 
-    header {
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #333;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 2px;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .intro {
-      margin-bottom: 30px;
-      line-height: 1.6;
-      color: #ccc;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      border-left: 4px solid #888;
-      padding-left: 10px;
-      margin-bottom: 15px;
-    }
-
-    .post {
-      margin-bottom: 15px;
-      padding: 10px;
-      background-color: #663300;
-      border-radius: 5px;
-    }
-
-    .post a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .post p {
-      margin: 5px 0 0;
-      font-size: 13px;
-      color: #aaa;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #333;
-      font-size: 12px;
-      color: #777;
+    /* Uzumaki SVG inline decoration */
+    .center-seal {
+      display: flex; justify-content: center;
+      padding: 2rem 0;
+      opacity: 0.12;
     }
   </style>
 </head>
 <body>
+  <div class="uzumaki-bg"></div>
 
-  <header>
-    <h1>NARUTO Fan Log</h1>
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="blog.html">BLOG</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="about.html">ABOUT</a>
-    </nav>
-  </header>
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <span class="uzumaki-spin">
+        <svg width="26" height="26" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="6" stroke="#FF6B00" stroke-width="2.5"/>
+          <circle cx="50" cy="50" r="17" stroke="#FF6B00" stroke-width="2"/>
+          <circle cx="50" cy="50" r="30" stroke="#FF6B00" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="44" stroke="#FF6B00" stroke-width="1"/>
+        </svg>
+      </span>
+      NARUTO FAN
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">HOME</a></li>
+      <li><a href="blog.html">BLOG</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+  </nav>
 
-  <div class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
 
-    <div class="intro">
-      <p>
-        このサイトは『NARUTO』のファンアートを置くための場所です。<br>
-        正しい解釈とかじゃなくて、「ここ好き」「なんか分からないけど良い」を大事にしてます。
-      </p>
+    <!-- Uzumaki watermark -->
+    <svg class="hero-uzumaki-big" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="10"  stroke="#FF6B00" stroke-width="2"/>
+      <circle cx="200" cy="200" r="28"  stroke="#FF6B00" stroke-width="2"/>
+      <circle cx="200" cy="200" r="52"  stroke="#FF6B00" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="82"  stroke="#FF6B00" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="118" stroke="#FF6B00" stroke-width="1"/>
+      <circle cx="200" cy="200" r="160" stroke="#FF6B00" stroke-width="1"/>
+      <circle cx="200" cy="200" r="192" stroke="#FF6B00" stroke-width="0.7"/>
+      <line x1="200" y1="8"   x2="200" y2="392" stroke="#FF6B00" stroke-width="0.5" opacity="0.4"/>
+      <line x1="8"   y1="200" x2="392" y2="200" stroke="#FF6B00" stroke-width="0.5" opacity="0.4"/>
+      <line x1="57"  y1="57"  x2="343" y2="343" stroke="#FF6B00" stroke-width="0.3" opacity="0.3"/>
+      <line x1="343" y1="57"  x2="57"  y2="343" stroke="#FF6B00" stroke-width="0.3" opacity="0.3"/>
+    </svg>
+
+    <div class="hero-content">
+      <p class="hero-kana">木ノ葉隠れの里 ・ KONOHAGAKURE NO SATO</p>
+      <h1 class="hero-title">NARUTO</h1>
+      <p class="hero-sub">疾風伝 ―― 不屈の忍者の物語</p>
+      <a href="blog.html" class="hero-cta">最新記事を読む &#8594;</a>
     </div>
 
-    <div class="section">
-      <h2>Latest Posts</h2>
-
-      <div class="post">
-        <a href="blog.html">第○話のこのシーンが好きすぎる</a>
-        <p>感情がぐちゃぐちゃになるやつ</p>
-      </div>
-
-      <div class="post">
-        <a href="blog.html">この表情なんなんだろう</a>
-        <p>分からないけどめちゃくちゃ好き</p>
-      </div>
-
+    <!-- Konoha Skyline -->
+    <div class="hero-skyline">
+      <svg viewBox="0 0 1440 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#0e0802" stop-opacity="0.9"/>
+          </linearGradient>
+        </defs>
+        <!-- Pagoda-like shapes / village silhouette -->
+        <path d="M0 220 L0 160 L30 160 L30 130 L45 130 L45 110 L55 100 L65 110 L65 130 L80 130 L80 160
+                 L110 160 L110 180 L140 180 L140 140 L155 140 L155 115 L165 105 L175 115 L175 140
+                 L200 140 L200 130 L220 130 L220 100 L230 85  L240 100 L240 130 L260 130 L260 160
+                 L300 160 L300 145 L315 145 L315 120 L325 108 L335 120 L335 145 L360 145 L360 160
+                 L400 160 L400 120 L415 120 L415 90  L425 70  L435 90  L435 120 L460 120 L460 155
+                 L500 155 L500 140 L515 140 L515 115 L525 100 L535 115 L535 140 L560 140 L560 165
+                 L600 165 L600 145 L615 145 L615 118 L628 105 L640 118 L640 145 L668 145 L668 158
+                 L700 158 L700 130 L715 130 L715 100 L725 82  L735 100 L735 130 L760 130 L760 160
+                 L800 160 L800 148 L815 148 L815 125 L825 110 L835 125 L835 148 L860 148 L860 165
+                 L900 165 L900 138 L915 138 L915 108 L928 92  L940 108 L940 138 L968 138 L968 158
+                 L1000 158 L1000 145 L1015 145 L1015 120 L1025 108 L1035 120 L1035 145 L1060 145
+                 L1060 160 L1100 160 L1100 130 L1118 130 L1118 100 L1130 80 L1142 100 L1142 130
+                 L1170 130 L1170 150 L1200 150 L1200 138 L1215 138 L1215 115 L1225 102 L1235 115
+                 L1235 138 L1260 138 L1260 155 L1300 155 L1300 125 L1315 125 L1315 100 L1325 85
+                 L1335 100 L1335 125 L1360 125 L1360 155 L1400 155 L1400 170 L1440 170 L1440 220 Z"
+              fill="url(#skyGrad)"/>
+        <!-- Hokage monument rough shape -->
+        <rect x="650" y="40" width="140" height="80" fill="rgba(255,107,0,0.07)" rx="2"/>
+        <rect x="685" y="20" width="70"  height="30" fill="rgba(255,107,0,0.05)" rx="1"/>
+      </svg>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>Illustration</h2>
-
-      <div class="gallery">
-        <img src="illustshikamaru.jpg" alt="">
-        <img src="img2.jpg" alt="">
-        <img src="img3.jpg" alt="">
-      </div>
-
+  <!-- TICKER -->
+  <div class="featured-strip">
+    <div class="ticker-wrap">
+      <span class="ticker-item"><span class="ticker-dot"></span>疾風伝 完結</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>BORUTO 続編</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>木ノ葉流 忍術考察</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>三大忍術 解説</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>暁の謎 深堀り</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>疾風伝 完結</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>BORUTO 続編</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>木ノ葉流 忍術考察</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>三大忍術 解説</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>暁の謎 深堀り</span>
     </div>
-
   </div>
 
-  <footer>
-    <p>© Fan Log</p>
+  <!-- STATS BANNER -->
+  <div class="container rank-banner">
+    <div class="rank-item">
+      <span class="rank-num">700</span>
+      <span class="rank-label">連載話数</span>
+    </div>
+    <div class="rank-sep"></div>
+    <div class="rank-item">
+      <span class="rank-num">72</span>
+      <span class="rank-label">コミックス巻数</span>
+    </div>
+    <div class="rank-sep"></div>
+    <div class="rank-item">
+      <span class="rank-num">220</span>
+      <span class="rank-label">アニメ本編話数</span>
+    </div>
+    <div class="rank-sep"></div>
+    <div class="rank-item">
+      <span class="rank-num">500</span>
+      <span class="rank-label">疾風伝話数</span>
+    </div>
+  </div>
+
+  <!-- CHARACTER CARDS -->
+  <section class="section-pad features-section">
+    <div class="container">
+      <p class="section-label">Characters</p>
+      <h2 class="section-title">忍たちの<span>記録</span></h2>
+      <div class="divider"></div>
+      <div class="cards-grid">
+
+        <div class="card char-card">
+          <div class="card-thumb t1">
+            🍥
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(255,107,0,0.25),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">第七班 ・ 主人公</p>
+            <h3 class="card-title">うずまきナルト</h3>
+            <p class="card-desc">木ノ葉の里の第七代火影。九尾の人柱力として生まれ、孤独と偏見を乗り越えた不屈の忍者。夢は里で一番の火影になること。</p>
+          </div>
+        </div>
+
+        <div class="card char-card">
+          <div class="card-thumb t2">
+            🌀
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(100,150,255,0.2),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">第七班 ・ ライバル</p>
+            <h3 class="card-title">うちはサスケ</h3>
+            <p class="card-desc">うちは一族最後の生き残り。写輪眼と万華鏡写輪眼を持つ天才忍者。兄・イタチの真実を知り、里の守護者となる。</p>
+          </div>
+        </div>
+
+        <div class="card char-card">
+          <div class="card-thumb t3">
+            🌸
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(255,100,180,0.2),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">第七班 ・ 医療忍者</p>
+            <h3 class="card-title">春野サクラ</h3>
+            <p class="card-desc">綱手直伝の怪力とチャクラ制御の達人。医療忍術の第一人者として多くの命を救い、第七班を支え続ける。</p>
+          </div>
+        </div>
+
+        <div class="card char-card">
+          <div class="card-thumb t4">
+            👁️
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(200,100,50,0.2),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">コピー忍者 ・ 師匠</p>
+            <h3 class="card-title">はたけカカシ</h3>
+            <p class="card-desc">「千の術を模倣した男」。コピー忍者として恐れられ、第七班の師として三人を導いた第六代火影。</p>
+          </div>
+        </div>
+
+        <div class="card char-card">
+          <div class="card-thumb t5">
+            🐸
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(50,200,100,0.2),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">伝説の三忍 ・ 師匠</p>
+            <h3 class="card-title">自来也</h3>
+            <p class="card-desc">ガマ仙人の三大弟子のひとり。エロ仙人の異名を持ちながらも、ナルトの成長を誰より信じた師。</p>
+          </div>
+        </div>
+
+        <div class="card char-card">
+          <div class="card-thumb t6">
+            🌊
+            <div class="char-glow" style="background:radial-gradient(circle,rgba(50,100,200,0.2),transparent)"></div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag">暁 ・ 元雨隠れ</p>
+            <h3 class="card-title">長門 / ペイン</h3>
+            <p class="card-desc">輪廻眼を持つ男。六道ペインを操り木ノ葉を壊滅させるも、ナルトの言葉に心を動かされ命をかけて里人を蘇らせる。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section-sm">
+    <div class="container-narrow" style="padding: 0 2rem;">
+      <div class="quote-block">
+        <p class="quote-text">
+          諦めない……それがオレの忍道だ。どんなに辛くても、どんなに苦しくても、<br>
+          オレは絶対に諦めねぇ。それがうずまきナルトってもんだ！
+        </p>
+        <p class="quote-source">― うずまきナルト</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT BLOG -->
+  <section class="section-pad">
+    <div class="container">
+      <p class="section-label">Latest Posts</p>
+      <h2 class="section-title">最新<span>ブログ</span></h2>
+      <div class="divider"></div>
+      <div class="cards-grid">
+
+        <a href="blog.html" class="card" style="display:block;">
+          <div class="card-body" style="padding-top:1.8rem;">
+            <p class="card-tag">考察 · 2025.04.20</p>
+            <h3 class="card-title">六道仙術とは何か――チャクラの起源を辿る</h3>
+            <p class="card-desc">六道仙人から始まるチャクラの歴史を紐解き、ナルトとサスケが継承した力の本質を考察します。</p>
+            <span class="read-more">続きを読む →</span>
+          </div>
+        </a>
+
+        <a href="blog.html" class="card" style="display:block;">
+          <div class="card-body" style="padding-top:1.8rem;">
+            <p class="card-tag">レビュー · 2025.04.08</p>
+            <h3 class="card-title">ペイン戦再考――ナルトはなぜ勝てたのか</h3>
+            <p class="card-desc">木ノ葉壊滅から始まったペイン襲来編。戦略・心理・チャクラ量の観点から徹底的に振り返ります。</p>
+            <span class="read-more">続きを読む →</span>
+          </div>
+        </a>
+
+        <a href="blog.html" class="card" style="display:block;">
+          <div class="card-body" style="padding-top:1.8rem;">
+            <p class="card-tag">解説 · 2025.03.25</p>
+            <h3 class="card-title">写輪眼の段階と能力一覧――万華鏡から輪廻眼まで</h3>
+            <p class="card-desc">うちは一族が持つ写輪眼のすべての段階と、各形態が持つ固有能力を網羅的に解説します。</p>
+            <span class="read-more">続きを読む →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CENTER SEAL DECORATION -->
+  <div class="center-seal">
+    <svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="110" cy="110" r="10"  stroke="#FF6B00" stroke-width="2.5"/>
+      <circle cx="110" cy="110" r="25"  stroke="#FF6B00" stroke-width="2"/>
+      <circle cx="110" cy="110" r="45"  stroke="#FF6B00" stroke-width="1.5"/>
+      <circle cx="110" cy="110" r="68"  stroke="#FF6B00" stroke-width="1.2"/>
+      <circle cx="110" cy="110" r="93"  stroke="#FF6B00" stroke-width="1"/>
+      <circle cx="110" cy="110" r="108" stroke="#FF6B00" stroke-width="0.7"/>
+      <line x1="110" y1="2"   x2="110" y2="218" stroke="#FF6B00" stroke-width="0.6" opacity="0.5"/>
+      <line x1="2"   y1="110" x2="218" y2="110" stroke="#FF6B00" stroke-width="0.6" opacity="0.5"/>
+      <line x1="32"  y1="32"  x2="188" y2="188" stroke="#FF6B00" stroke-width="0.4" opacity="0.35"/>
+      <line x1="188" y1="32"  x2="32"  y2="188" stroke="#FF6B00" stroke-width="0.4" opacity="0.35"/>
+      <line x1="110" y1="2"   x2="188" y2="188" stroke="#FF6B00" stroke-width="0.3" opacity="0.25"/>
+      <line x1="110" y1="2"   x2="32"  y2="188" stroke="#FF6B00" stroke-width="0.3" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-logo">NARUTO FAN</p>
+    <ul class="footer-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <p class="footer-text">
+      ファンによるファンのためのNARUTOサイト<br>
+      NARUTOは岸本斉史先生の著作物です。このサイトは非公式のファンサイトです。<br>
+      © 2025 NARUTO FAN — All fan content
+    </p>
   </footer>
 
 </body>
