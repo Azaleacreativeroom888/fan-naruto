@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mushoku Tensei Fan Log</title>
+  <title>NARUTO Fan Log</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:          #1c1410;
-      --bg-warm:     #221a12;
-      --bg-card:     #271e15;
-      --bg-hover:    #2e2318;
-      --border:      #3a2e22;
-      --border-soft: #4a3c2c;
-      --text-main:   #d4c4a8;
-      --text-sub:    #9a8a70;
-      --text-dim:    #5a4e3c;
-      --sepia:       #c8a870;
-      --sepia-dark:  #8a6a40;
-      --parchment:   #b89a68;
-      --rose:        #9a7060;
-      --leaf:        #7a8a60;
+      --bg:          #0e0c09;
+      --bg-warm:     #141008;
+      --bg-card:     #1a1408;
+      --bg-hover:    #221a0a;
+      --border:      #3a2c10;
+      --border-soft: #5a4418;
+      --text-main:   #e8d4a0;
+      --text-sub:    #a08840;
+      --text-dim:    #5a4820;
+      --orange:      #e86820;
+      --orange-dark: #a04010;
+      --orange-glow: #ff8c38;
+      --amber:       #c87820;
+      --red:         #9a2010;
+      --shadow:      #1e0800;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,41 +39,61 @@
       overflow-x: hidden;
     }
 
+    /* Layered atmospheric glow — orange/ember */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 50% at 50% 0%,   rgba(180,140,80,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 80% 80%,  rgba(140,100,60,0.04) 0%, transparent 50%),
-        radial-gradient(ellipse 30% 20% at 10% 60%,  rgba(160,120,70,0.03) 0%, transparent 50%);
+        radial-gradient(ellipse 60% 40% at 50% 0%,   rgba(220,100,20,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 90% 75%,  rgba(180,60,10,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 25% 20% at 5%  55%,  rgba(200,80,15,0.05) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
 
+    /* Noise grain overlay */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
     }
 
     header, .container, footer { position: relative; z-index: 1; }
 
+    /* ── SCROLL KUNAI cursor hint ── */
     @keyframes sway {
       0%,100% { transform: translateY(0) rotate(0deg); }
-      50%      { transform: translateY(-5px) rotate(2deg); }
+      50%      { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    @keyframes flicker {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.7; }
     }
 
     /* ── HEADER ── */
     header {
-      padding: 64px 20px 48px;
+      padding: 70px 20px 52px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: visible;
+    }
+
+    /* Spiral / seal SVG background hint */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(200,100,20,0.04) 0%, transparent 65%);
+      pointer-events: none;
     }
 
     .header-ornament {
@@ -86,71 +107,89 @@
     .ornament-line {
       width: 60px;
       height: 1px;
-      background: linear-gradient(to right, transparent, var(--sepia-dark));
+      background: linear-gradient(to right, transparent, var(--orange-dark));
     }
     .ornament-line.rev {
-      background: linear-gradient(to left, transparent, var(--sepia-dark));
+      background: linear-gradient(to left, transparent, var(--orange-dark));
     }
 
     .ornament-diamond {
       width: 5px;
       height: 5px;
-      border: 1px solid var(--sepia-dark);
+      border: 1px solid var(--orange-dark);
       transform: rotate(45deg);
       flex-shrink: 0;
     }
 
     .ornament-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 10px;
-      font-style: italic;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
       color: var(--text-dim);
-      letter-spacing: 0.35em;
+      letter-spacing: 0.4em;
     }
 
     .site-kana {
       font-size: 10px;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.45em;
       color: var(--text-dim);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       margin-bottom: 14px;
     }
 
     header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 5.5vw, 46px);
-      font-weight: 300;
-      font-style: italic;
-      letter-spacing: 0.06em;
-      color: var(--text-main);
-      margin-bottom: 6px;
-      text-shadow: 0 2px 20px rgba(180,140,80,0.15);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      margin-bottom: 4px;
+      text-shadow:
+        0 0 40px rgba(230,100,20,0.35),
+        0 2px 2px rgba(0,0,0,0.8);
     }
 
     .title-sub {
       font-size: 10px;
       letter-spacing: 0.5em;
       color: var(--text-dim);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       margin-bottom: 32px;
     }
 
+    /* Corner deco */
     .deco-topleft {
       position: absolute;
-      top: 14px; left: 18px;
-      font-size: 18px;
-      color: var(--sepia-dark);
-      opacity: 0.25;
-      animation: sway 7s ease-in-out infinite;
+      top: 16px; left: 20px;
+      font-size: 16px;
+      color: var(--orange-dark);
+      opacity: 0.3;
+      animation: sway 8s ease-in-out infinite;
     }
 
     .deco-topright {
       position: absolute;
-      top: 14px; right: 18px;
+      top: 16px; right: 20px;
       font-size: 14px;
-      color: var(--rose);
-      opacity: 0.2;
-      animation: sway 9s ease-in-out infinite reverse;
+      color: var(--red);
+      opacity: 0.22;
+      animation: sway 10s ease-in-out infinite reverse;
+    }
+
+    /* Konoha leaf SVG stamp — pure CSS */
+    .leaf-stamp {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 36px;
+      z-index: 2;
+    }
+
+    .leaf-stamp svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.22;
     }
 
     /* ── NAV ── */
@@ -166,7 +205,7 @@
       text-decoration: none;
       font-size: 9px;
       letter-spacing: 0.4em;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       padding: 7px 22px;
       transition: color 0.3s, background 0.3s;
       border-right: 1px solid var(--border);
@@ -175,7 +214,7 @@
     nav a:last-child { border-right: none; }
 
     nav a:hover {
-      color: var(--sepia);
+      color: var(--orange-glow);
       background: var(--bg-hover);
     }
 
@@ -183,7 +222,7 @@
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 56px 24px 80px;
+      padding: 60px 24px 88px;
     }
 
     /* ── INTRO ── */
@@ -197,8 +236,24 @@
       text-align: center;
     }
 
-    .intro::before { content: '✿'; position: absolute; top: 10px; left: 14px; font-size: 11px; color: var(--text-dim); }
-    .intro::after  { content: '✿'; position: absolute; bottom: 10px; right: 14px; font-size: 11px; color: var(--text-dim); }
+    /* small orange accent bars */
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--orange-dark), transparent);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .intro::after {
+      content: '卍';
+      position: absolute;
+      bottom: 8px; right: 12px;
+      font-size: 11px;
+      color: var(--text-dim);
+      opacity: 0.4;
+    }
 
     .intro p {
       font-size: 13px;
@@ -217,19 +272,18 @@
     }
 
     .section-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.45em;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5em;
       color: var(--text-sub);
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     .section-deco {
-      font-family: 'Cormorant Garamond', serif;
       font-size: 12px;
-      color: var(--sepia-dark);
+      color: var(--orange-dark);
     }
 
     .section-line {
@@ -259,7 +313,7 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 3px;
-      background: linear-gradient(to bottom, var(--sepia-dark), var(--rose));
+      background: linear-gradient(to bottom, var(--orange), var(--red));
       transform: scaleY(0);
       transform-origin: top;
       transition: transform 0.35s ease;
@@ -268,23 +322,26 @@
     .post:hover {
       background: var(--bg-hover);
       border-color: var(--border-soft);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 28px rgba(200,80,10,0.15);
     }
 
     .post:hover::before { transform: scaleY(1); }
 
-    .post-flower {
+    .post-icon {
       font-size: 13px;
-      color: var(--sepia-dark);
+      color: var(--orange-dark);
       padding-top: 1px;
       flex-shrink: 0;
       transition: color 0.3s;
     }
 
-    .post:hover .post-flower { color: var(--sepia); }
+    .post:hover .post-icon {
+      color: var(--orange-glow);
+      animation: flicker 1.4s ease-in-out infinite;
+    }
 
     .post-date {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 10px;
       color: var(--text-dim);
       letter-spacing: 0.15em;
@@ -309,10 +366,10 @@
     }
 
     .post-tag {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 8px;
       letter-spacing: 0.3em;
-      color: var(--text-dim);
+      color: var(--orange-dark);
       border: 1px solid var(--border);
       padding: 2px 10px;
       border-radius: 10px;
@@ -340,11 +397,11 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
     }
 
-    .divider-inner span { font-size: 13px; color: var(--sepia-dark); }
-    .divider-inner .sm { font-size: 9px; color: var(--text-dim); }
+    .divider-inner span       { font-size: 13px; color: var(--orange-dark); }
+    .divider-inner .sm        { font-size: 9px;  color: var(--text-dim); }
 
     /* ── GALLERY ── */
     .gallery {
@@ -364,21 +421,21 @@
     }
 
     .gallery-item:hover {
-      border-color: var(--border-soft);
-      box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+      border-color: var(--orange-dark);
+      box-shadow: 0 6px 28px rgba(200,80,10,0.2);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: sepia(0.6) saturate(0.5) brightness(0.8);
+      filter: sepia(0.5) saturate(0.6) brightness(0.8) hue-rotate(-10deg);
       transition: filter 0.4s ease, transform 0.5s ease;
       display: block;
     }
 
     .gallery-item:hover img {
-      filter: sepia(0.35) saturate(0.65) brightness(0.9);
+      filter: sepia(0.25) saturate(0.8) brightness(0.92) hue-rotate(-5deg);
       transform: scale(1.04);
     }
 
@@ -398,7 +455,7 @@
     }
 
     .ph-label {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 9px;
       letter-spacing: 0.35em;
       color: var(--text-dim);
@@ -419,21 +476,21 @@
     }
 
     .footer-mark {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 12px;
       color: var(--text-dim);
       letter-spacing: 0.3em;
-      font-style: italic;
     }
 
-    .footer-flowers {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.3em;
+    .footer-seals {
+      font-size: 12px;
+      color: var(--orange-dark);
+      letter-spacing: 0.4em;
+      opacity: 0.5;
     }
 
     .footer-copy {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 10px;
       color: var(--text-dim);
       letter-spacing: 0.2em;
@@ -452,6 +509,12 @@
     .anim-d4 { animation-delay: 0.28s; }
     .anim-d5 { animation-delay: 0.35s; }
 
+    /* orange pulse on hover for post tags */
+    .post:hover .post-tag {
+      border-color: var(--orange-dark);
+      color: var(--orange);
+    }
+
     @media (max-width: 600px) {
       .gallery { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
@@ -462,8 +525,8 @@
 <body>
 
   <header>
-    <div class="deco-topleft">✾</div>
-    <div class="deco-topright">❧</div>
+    <div class="deco-topleft">🍃</div>
+    <div class="deco-topright">⚡</div>
 
     <div class="header-ornament anim">
       <div class="ornament-line rev"></div>
@@ -473,23 +536,34 @@
       <div class="ornament-line"></div>
     </div>
 
-    <div class="site-kana anim anim-d1">ファンサイト — 無職転生</div>
-    <h1 class="anim anim-d2">Mushoku Tensei Fan Log</h1>
-    <div class="title-sub anim anim-d3">Jobless Reincarnation · Personal Archive</div>
+    <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
+    <h1 class="anim anim-d2">NARUTO Fan Log</h1>
+    <div class="title-sub anim anim-d3">Naruto Uzumaki · Personal Archive</div>
 
     <nav class="anim anim-d4">
       <a href="blog.html">BLOG</a>
       <a href="gallery.html">GALLERY</a>
       <a href="about.html">ABOUT</a>
     </nav>
+
+    <!-- Konoha leaf stamp -->
+    <div class="leaf-stamp">
+      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <circle cx="18" cy="18" r="16" stroke="#e86820" stroke-width="1.2"/>
+        <!-- simplified leaf symbol -->
+        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z"
+              fill="#e86820" opacity="0.6"/>
+        <circle cx="18" cy="18" r="2" fill="#e86820" opacity="0.8"/>
+      </svg>
+    </div>
   </header>
 
   <div class="container">
 
     <div class="intro anim anim-d5">
       <p>
-        このサイトは『無職転生』のファンアートを置くための場所です。<br>
-        正しい解釈とかじゃなくて、「ここ好き」「なんか分からないけど良い」を大事にしてます。
+        このサイトはNARUTOのファン創作を置くための場所です。<br>
+        正しい考察とかじゃなくて、「ここ好き」「このシーンなんか泣ける」を大事にしてます。
       </p>
     </div>
 
@@ -501,31 +575,41 @@
       </div>
 
       <a class="post" href="blog.html">
-        <span class="post-flower">❀</span>
+        <span class="post-icon">🔥</span>
         <span class="post-date">05.08</span>
         <div class="post-body">
-          <span class="post-title">第○話のこのシーンが好きすぎる</span>
+          <span class="post-title">このシーンがずっと頭から離れない</span>
           <span class="post-desc">感情がぐちゃぐちゃになるやつ</span>
         </div>
         <span class="post-tag">FEELINGS</span>
       </a>
 
       <a class="post" href="blog.html">
-        <span class="post-flower">✾</span>
+        <span class="post-icon">🍃</span>
         <span class="post-date">04.30</span>
         <div class="post-body">
-          <span class="post-title">この表情なんなんだろう</span>
+          <span class="post-title">ナルトとサスケのあの表情なんなんだろう</span>
           <span class="post-desc">分からないけどめちゃくちゃ好き</span>
         </div>
         <span class="post-tag">EXPRESSION</span>
+      </a>
+
+      <a class="post" href="blog.html">
+        <span class="post-icon">⚡</span>
+        <span class="post-date">04.18</span>
+        <div class="post-body">
+          <span class="post-title">カカシ先生について語りたい</span>
+          <span class="post-desc">なぜこんなに好きなのか考えてみた</span>
+        </div>
+        <span class="post-tag">CHARACTER</span>
       </a>
     </div>
 
     <div class="divider">
       <div class="divider-inner">
-        <span>✿</span>
+        <span>✦</span>
         <span class="sm">· · ·</span>
-        <span>✿</span>
+        <span>✦</span>
       </div>
     </div>
 
@@ -540,19 +624,19 @@
         <div class="gallery-item">
           <!-- <img src="illust1.jpg" alt=""> -->
           <div class="gallery-placeholder">
-            <span class="ph-icon">🌸</span>
+            <span class="ph-icon">🌀</span>
             <span class="ph-label">ILLUST · 01</span>
           </div>
         </div>
         <div class="gallery-item">
           <div class="gallery-placeholder">
-            <span class="ph-icon">🌿</span>
+            <span class="ph-icon">🍃</span>
             <span class="ph-label">ILLUST · 02</span>
           </div>
         </div>
         <div class="gallery-item">
           <div class="gallery-placeholder">
-            <span class="ph-icon">🕯️</span>
+            <span class="ph-icon">🔥</span>
             <span class="ph-label">ILLUST · 03</span>
           </div>
         </div>
@@ -564,8 +648,8 @@
   <footer>
     <div class="footer-inner">
       <span class="footer-mark">Fan Archive</span>
-      <span class="footer-flowers">✾ · ✿ · ❀</span>
-      <span class="footer-copy">© Fan Log — 無職転生</span>
+      <span class="footer-seals">✦ · ✦ · ✦</span>
+      <span class="footer-copy">© Fan Log — NARUTO</span>
     </div>
   </footer>
 
