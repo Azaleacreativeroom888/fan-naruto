@@ -3,380 +3,570 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NARUTO FAN — 木ノ葉の里</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Mushoku Tensei Fan Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
-    /* Page-specific extras */
-    .features-section {
-      background: linear-gradient(180deg, transparent, rgba(255,107,0,0.03), transparent);
+    :root {
+      --bg:          #1c1410;
+      --bg-warm:     #221a12;
+      --bg-card:     #271e15;
+      --bg-hover:    #2e2318;
+      --border:      #3a2e22;
+      --border-soft: #4a3c2c;
+      --text-main:   #d4c4a8;
+      --text-sub:    #9a8a70;
+      --text-dim:    #5a4e3c;
+      --sepia:       #c8a870;
+      --sepia-dark:  #8a6a40;
+      --parchment:   #b89a68;
+      --rose:        #9a7060;
+      --leaf:        #7a8a60;
     }
-    .featured-strip {
-      background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(201,79,0,0.05));
-      border-top: 1px solid rgba(255,107,0,0.2);
-      border-bottom: 1px solid rgba(255,107,0,0.2);
-      padding: 1.5rem 2rem;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      line-height: 1.9;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%,   rgba(180,140,80,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 80% 80%,  rgba(140,100,60,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 20% at 10% 60%,  rgba(160,120,70,0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header, .container, footer { position: relative; z-index: 1; }
+
+    @keyframes sway {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-5px) rotate(2deg); }
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 64px 20px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: visible;
+    }
+
+    .header-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .ornament-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--sepia-dark));
+    }
+    .ornament-line.rev {
+      background: linear-gradient(to left, transparent, var(--sepia-dark));
+    }
+
+    .ornament-diamond {
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--sepia-dark);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .ornament-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      font-style: italic;
+      color: var(--text-dim);
+      letter-spacing: 0.35em;
+    }
+
+    .site-kana {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--text-dim);
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5.5vw, 46px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      text-shadow: 0 2px 20px rgba(180,140,80,0.15);
+    }
+
+    .title-sub {
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      color: var(--text-dim);
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 32px;
+    }
+
+    .deco-topleft {
+      position: absolute;
+      top: 14px; left: 18px;
+      font-size: 18px;
+      color: var(--sepia-dark);
+      opacity: 0.25;
+      animation: sway 7s ease-in-out infinite;
+    }
+
+    .deco-topright {
+      position: absolute;
+      top: 14px; right: 18px;
+      font-size: 14px;
+      color: var(--rose);
+      opacity: 0.2;
+      animation: sway 9s ease-in-out infinite reverse;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: inline-flex;
+      border: 1px solid var(--border);
       overflow: hidden;
+      border-radius: 2px;
     }
-    .ticker-wrap {
-      display: flex; gap: 4rem;
-      animation: ticker 30s linear infinite;
+
+    nav a {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      font-family: 'Cormorant Garamond', serif;
+      padding: 7px 22px;
+      transition: color 0.3s, background 0.3s;
+      border-right: 1px solid var(--border);
+    }
+
+    nav a:last-child { border-right: none; }
+
+    nav a:hover {
+      color: var(--sepia);
+      background: var(--bg-hover);
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      margin-bottom: 64px;
+      padding: 30px 36px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-warm) 100%);
+      position: relative;
+      text-align: center;
+    }
+
+    .intro::before { content: '✿'; position: absolute; top: 10px; left: 14px; font-size: 11px; color: var(--text-dim); }
+    .intro::after  { content: '✿'; position: absolute; bottom: 10px; right: 14px; font-size: 11px; color: var(--text-dim); }
+
+    .intro p {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 2.2;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 64px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: var(--text-sub);
+      text-transform: uppercase;
       white-space: nowrap;
     }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      font-family: var(--font-nav);
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
-      color: var(--orange);
-      text-transform: uppercase;
-      display: flex; align-items: center; gap: 1.5rem;
-    }
-    .ticker-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
-    /* Character cards with glow accent */
-    .char-card .card-thumb { position: relative; }
-    .char-glow {
-      position: absolute; inset: 0; opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-    }
-    .card:hover .char-glow { opacity: 1; }
 
-    /* Rank banner */
-    .rank-banner {
-      display: flex; align-items: center; justify-content: center;
-      gap: 3rem; flex-wrap: wrap;
-      padding: 3rem 2rem;
-      border-top: 1px solid rgba(255,107,0,0.1);
-      border-bottom: 1px solid rgba(255,107,0,0.1);
-      margin: 2rem 0;
+    .section-deco {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: var(--sepia-dark);
     }
-    .rank-item { text-align: center; }
-    .rank-num {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      color: var(--orange);
-      text-shadow: 0 0 24px rgba(255,107,0,0.4);
-      display: block; line-height: 1;
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border-soft), transparent);
     }
-    .rank-label {
-      font-family: var(--font-nav);
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      color: var(--cream-dark);
-      text-transform: uppercase;
-      opacity: 0.65;
-      margin-top: 0.4rem;
+
+    /* ── POSTS ── */
+    .post {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 17px 20px 17px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 8px;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .post::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--sepia-dark), var(--rose));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.35s ease;
+    }
+
+    .post:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-soft);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+
+    .post:hover::before { transform: scaleY(1); }
+
+    .post-flower {
+      font-size: 13px;
+      color: var(--sepia-dark);
+      padding-top: 1px;
+      flex-shrink: 0;
+      transition: color 0.3s;
+    }
+
+    .post:hover .post-flower { color: var(--sepia); }
+
+    .post-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      min-width: 46px;
+      padding-top: 3px;
+    }
+
+    .post-body { flex: 1; }
+
+    .post-title {
+      font-size: 14px;
+      color: var(--text-main);
+      font-weight: 300;
+      display: block;
+      margin-bottom: 4px;
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .post-desc {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .post-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 10px;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 48px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-soft), transparent);
+    }
+
+    .divider-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .divider-inner span { font-size: 13px; color: var(--sepia-dark); }
+    .divider-inner .sm { font-size: 9px; color: var(--text-dim); }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 3px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.6) saturate(0.5) brightness(0.8);
+      transition: filter 0.4s ease, transform 0.5s ease;
       display: block;
     }
-    .rank-sep {
-      width: 1px; height: 60px;
-      background: linear-gradient(180deg, transparent, rgba(255,107,0,0.3), transparent);
+
+    .gallery-item:hover img {
+      filter: sepia(0.35) saturate(0.65) brightness(0.9);
+      transform: scale(1.04);
     }
 
-    /* Uzumaki SVG inline decoration */
-    .center-seal {
-      display: flex; justify-content: center;
-      padding: 2rem 0;
-      opacity: 0.12;
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .ph-icon {
+      font-size: 26px;
+      opacity: 0.18;
+    }
+
+    .ph-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--text-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.3em;
+      font-style: italic;
+    }
+
+    .footer-flowers {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.3em;
+    }
+
+    .footer-copy {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.2em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim    { animation: fadeUp 0.7s ease both; }
+    .anim-d1 { animation-delay: 0.07s; }
+    .anim-d2 { animation-delay: 0.14s; }
+    .anim-d3 { animation-delay: 0.21s; }
+    .anim-d4 { animation-delay: 0.28s; }
+    .anim-d5 { animation-delay: 0.35s; }
+
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+      .post-tag { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="uzumaki-bg"></div>
 
-  <!-- NAV -->
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">
-      <span class="uzumaki-spin">
-        <svg width="26" height="26" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="6" stroke="#FF6B00" stroke-width="2.5"/>
-          <circle cx="50" cy="50" r="17" stroke="#FF6B00" stroke-width="2"/>
-          <circle cx="50" cy="50" r="30" stroke="#FF6B00" stroke-width="1.5"/>
-          <circle cx="50" cy="50" r="44" stroke="#FF6B00" stroke-width="1"/>
-        </svg>
-      </span>
-      NARUTO FAN
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">HOME</a></li>
-      <li><a href="blog.html">BLOG</a></li>
-      <li><a href="gallery.html">GALLERY</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-    </ul>
-  </nav>
+  <header>
+    <div class="deco-topleft">✾</div>
+    <div class="deco-topright">❧</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-
-    <!-- Uzumaki watermark -->
-    <svg class="hero-uzumaki-big" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="10"  stroke="#FF6B00" stroke-width="2"/>
-      <circle cx="200" cy="200" r="28"  stroke="#FF6B00" stroke-width="2"/>
-      <circle cx="200" cy="200" r="52"  stroke="#FF6B00" stroke-width="1.5"/>
-      <circle cx="200" cy="200" r="82"  stroke="#FF6B00" stroke-width="1.5"/>
-      <circle cx="200" cy="200" r="118" stroke="#FF6B00" stroke-width="1"/>
-      <circle cx="200" cy="200" r="160" stroke="#FF6B00" stroke-width="1"/>
-      <circle cx="200" cy="200" r="192" stroke="#FF6B00" stroke-width="0.7"/>
-      <line x1="200" y1="8"   x2="200" y2="392" stroke="#FF6B00" stroke-width="0.5" opacity="0.4"/>
-      <line x1="8"   y1="200" x2="392" y2="200" stroke="#FF6B00" stroke-width="0.5" opacity="0.4"/>
-      <line x1="57"  y1="57"  x2="343" y2="343" stroke="#FF6B00" stroke-width="0.3" opacity="0.3"/>
-      <line x1="343" y1="57"  x2="57"  y2="343" stroke="#FF6B00" stroke-width="0.3" opacity="0.3"/>
-    </svg>
-
-    <div class="hero-content">
-      <p class="hero-kana">木ノ葉隠れの里 ・ KONOHAGAKURE NO SATO</p>
-      <h1 class="hero-title">NARUTO</h1>
-      <p class="hero-sub">ファンサイト（非公式）</p>
-      <a href="blog.html" class="hero-cta">最新記事を読む &#8594;</a>
+    <div class="header-ornament anim">
+      <div class="ornament-line rev"></div>
+      <div class="ornament-diamond"></div>
+      <span class="ornament-text">fan archive</span>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
     </div>
 
-    <!-- Konoha Skyline -->
-    <div class="hero-skyline">
-      <svg viewBox="0 0 1440 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.45"/>
-            <stop offset="100%" stop-color="#0e0802" stop-opacity="0.9"/>
-          </linearGradient>
-        </defs>
-        <!-- Pagoda-like shapes / village silhouette -->
-        <path d="M0 220 L0 160 L30 160 L30 130 L45 130 L45 110 L55 100 L65 110 L65 130 L80 130 L80 160
-                 L110 160 L110 180 L140 180 L140 140 L155 140 L155 115 L165 105 L175 115 L175 140
-                 L200 140 L200 130 L220 130 L220 100 L230 85  L240 100 L240 130 L260 130 L260 160
-                 L300 160 L300 145 L315 145 L315 120 L325 108 L335 120 L335 145 L360 145 L360 160
-                 L400 160 L400 120 L415 120 L415 90  L425 70  L435 90  L435 120 L460 120 L460 155
-                 L500 155 L500 140 L515 140 L515 115 L525 100 L535 115 L535 140 L560 140 L560 165
-                 L600 165 L600 145 L615 145 L615 118 L628 105 L640 118 L640 145 L668 145 L668 158
-                 L700 158 L700 130 L715 130 L715 100 L725 82  L735 100 L735 130 L760 130 L760 160
-                 L800 160 L800 148 L815 148 L815 125 L825 110 L835 125 L835 148 L860 148 L860 165
-                 L900 165 L900 138 L915 138 L915 108 L928 92  L940 108 L940 138 L968 138 L968 158
-                 L1000 158 L1000 145 L1015 145 L1015 120 L1025 108 L1035 120 L1035 145 L1060 145
-                 L1060 160 L1100 160 L1100 130 L1118 130 L1118 100 L1130 80 L1142 100 L1142 130
-                 L1170 130 L1170 150 L1200 150 L1200 138 L1215 138 L1215 115 L1225 102 L1235 115
-                 L1235 138 L1260 138 L1260 155 L1300 155 L1300 125 L1315 125 L1315 100 L1325 85
-                 L1335 100 L1335 125 L1360 125 L1360 155 L1400 155 L1400 170 L1440 170 L1440 220 Z"
-              fill="url(#skyGrad)"/>
-        <!-- Hokage monument rough shape -->
-        <rect x="650" y="40" width="140" height="80" fill="rgba(255,107,0,0.07)" rx="2"/>
-        <rect x="685" y="20" width="70"  height="30" fill="rgba(255,107,0,0.05)" rx="1"/>
-      </svg>
-    </div>
-  </section>
+    <div class="site-kana anim anim-d1">ファンサイト — 無職転生</div>
+    <h1 class="anim anim-d2">Mushoku Tensei Fan Log</h1>
+    <div class="title-sub anim anim-d3">Jobless Reincarnation · Personal Archive</div>
 
-  <!-- TICKER -->
-  <div class="featured-strip">
-    <div class="ticker-wrap">
-      <span class="ticker-item"><span class="ticker-dot"></span>疾風伝 完結</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>BORUTO 続編</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>木ノ葉流 忍術考察</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>三大忍術 解説</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>暁の謎 深堀り</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>疾風伝 完結</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>BORUTO 続編</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>木ノ葉流 忍術考察</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>三大忍術 解説</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>暁の謎 深堀り</span>
-    </div>
-  </div>
+    <nav class="anim anim-d4">
+      <a href="blog.html">BLOG</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="about.html">ABOUT</a>
+    </nav>
+  </header>
 
-  <!-- STATS BANNER -->
-  <div class="container rank-banner">
-    <div class="rank-item">
-      <span class="rank-num">700</span>
-      <span class="rank-label">連載話数</span>
-    </div>
-    <div class="rank-sep"></div>
-    <div class="rank-item">
-      <span class="rank-num">72</span>
-      <span class="rank-label">コミックス巻数</span>
-    </div>
-    <div class="rank-sep"></div>
-    <div class="rank-item">
-      <span class="rank-num">220</span>
-      <span class="rank-label">アニメ本編話数</span>
-    </div>
-    <div class="rank-sep"></div>
-    <div class="rank-item">
-      <span class="rank-num">500</span>
-      <span class="rank-label">疾風伝話数</span>
-    </div>
-  </div>
+  <div class="container">
 
-  <!-- CHARACTER CARDS -->
-  <section class="section-pad features-section">
-    <div class="container">
-      <p class="section-label">Characters</p>
-      <h2 class="section-title">忍たちの<span>記録</span></h2>
-      <div class="divider"></div>
-      <div class="cards-grid">
+    <div class="intro anim anim-d5">
+      <p>
+        このサイトは『無職転生』のファンアートを置くための場所です。<br>
+        正しい解釈とかじゃなくて、「ここ好き」「なんか分からないけど良い」を大事にしてます。
+      </p>
+    </div>
 
-        <div class="card char-card">
-          <div class="card-thumb t1">
-            🍥
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(255,107,0,0.25),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">第七班 ・ 主人公</p>
-            <h3 class="card-title">うずまきナルト</h3>
-            <p class="card-desc">木ノ葉の里の第七代火影。九尾の人柱力として生まれ、孤独と偏見を乗り越えた不屈の忍者。夢は里で一番の火影になること。</p>
-          </div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-deco">✦</span>
+        <h2>Latest Posts</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <a class="post" href="blog.html">
+        <span class="post-flower">❀</span>
+        <span class="post-date">05.08</span>
+        <div class="post-body">
+          <span class="post-title">第○話のこのシーンが好きすぎる</span>
+          <span class="post-desc">感情がぐちゃぐちゃになるやつ</span>
         </div>
+        <span class="post-tag">FEELINGS</span>
+      </a>
 
-        <div class="card char-card">
-          <div class="card-thumb t2">
-            🌀
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(100,150,255,0.2),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">第七班 ・ ライバル</p>
-            <h3 class="card-title">うちはサスケ</h3>
-            <p class="card-desc">うちは一族最後の生き残り。写輪眼と万華鏡写輪眼を持つ天才忍者。兄・イタチの真実を知り、里の守護者となる。</p>
-          </div>
+      <a class="post" href="blog.html">
+        <span class="post-flower">✾</span>
+        <span class="post-date">04.30</span>
+        <div class="post-body">
+          <span class="post-title">この表情なんなんだろう</span>
+          <span class="post-desc">分からないけどめちゃくちゃ好き</span>
         </div>
+        <span class="post-tag">EXPRESSION</span>
+      </a>
+    </div>
 
-        <div class="card char-card">
-          <div class="card-thumb t3">
-            🌸
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(255,100,180,0.2),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">第七班 ・ 医療忍者</p>
-            <h3 class="card-title">春野サクラ</h3>
-            <p class="card-desc">綱手直伝の怪力とチャクラ制御の達人。医療忍術の第一人者として多くの命を救い、第七班を支え続ける。</p>
-          </div>
-        </div>
-
-        <div class="card char-card">
-          <div class="card-thumb t4">
-            👁️
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(200,100,50,0.2),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">コピー忍者 ・ 師匠</p>
-            <h3 class="card-title">はたけカカシ</h3>
-            <p class="card-desc">「千の術を模倣した男」。コピー忍者として恐れられ、第七班の師として三人を導いた第六代火影。</p>
-          </div>
-        </div>
-
-        <div class="card char-card">
-          <div class="card-thumb t5">
-            🐸
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(50,200,100,0.2),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">伝説の三忍 ・ 師匠</p>
-            <h3 class="card-title">自来也</h3>
-            <p class="card-desc">ガマ仙人の三大弟子のひとり。エロ仙人の異名を持ちながらも、ナルトの成長を誰より信じた師。</p>
-          </div>
-        </div>
-
-        <div class="card char-card">
-          <div class="card-thumb t6">
-            🌊
-            <div class="char-glow" style="background:radial-gradient(circle,rgba(50,100,200,0.2),transparent)"></div>
-          </div>
-          <div class="card-body">
-            <p class="card-tag">暁 ・ 元雨隠れ</p>
-            <h3 class="card-title">長門 / ペイン</h3>
-            <p class="card-desc">輪廻眼を持つ男。六道ペインを操り木ノ葉を壊滅させるも、ナルトの言葉に心を動かされ命をかけて里人を蘇らせる。</p>
-          </div>
-        </div>
-
+    <div class="divider">
+      <div class="divider-inner">
+        <span>✿</span>
+        <span class="sm">· · ·</span>
+        <span>✿</span>
       </div>
     </div>
-  </section>
 
-  <!-- QUOTE -->
-  <section class="section-sm">
-    <div class="container-narrow" style="padding: 0 2rem;">
-      <div class="quote-block">
-        <p class="quote-text">
-          諦めない……それがオレの忍道だ。どんなに辛くても、どんなに苦しくても、<br>
-          オレは絶対に諦めねぇ。それがうずまきナルトってもんだ！
-        </p>
-        <p class="quote-source">― うずまきナルト</p>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-deco">✦</span>
+        <h2>Illustration</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <!-- <img src="illust1.jpg" alt=""> -->
+          <div class="gallery-placeholder">
+            <span class="ph-icon">🌸</span>
+            <span class="ph-label">ILLUST · 01</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <span class="ph-icon">🌿</span>
+            <span class="ph-label">ILLUST · 02</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <span class="ph-icon">🕯️</span>
+            <span class="ph-label">ILLUST · 03</span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- RECENT BLOG -->
-  <section class="section-pad">
-    <div class="container">
-      <p class="section-label">Latest Posts</p>
-      <h2 class="section-title">最新<span>ブログ</span></h2>
-      <div class="divider"></div>
-      <div class="cards-grid">
-
-        <a href="blog.html" class="card" style="display:block;">
-          <div class="card-body" style="padding-top:1.8rem;">
-            <p class="card-tag">考察 · 2025.04.20</p>
-            <h3 class="card-title">六道仙術とは何か――チャクラの起源を辿る</h3>
-            <p class="card-desc">六道仙人から始まるチャクラの歴史を紐解き、ナルトとサスケが継承した力の本質を考察します。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-
-        <a href="blog.html" class="card" style="display:block;">
-          <div class="card-body" style="padding-top:1.8rem;">
-            <p class="card-tag">レビュー · 2025.04.08</p>
-            <h3 class="card-title">ペイン戦再考――ナルトはなぜ勝てたのか</h3>
-            <p class="card-desc">木ノ葉壊滅から始まったペイン襲来編。戦略・心理・チャクラ量の観点から徹底的に振り返ります。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-
-        <a href="blog.html" class="card" style="display:block;">
-          <div class="card-body" style="padding-top:1.8rem;">
-            <p class="card-tag">解説 · 2025.03.25</p>
-            <h3 class="card-title">写輪眼の段階と能力一覧――万華鏡から輪廻眼まで</h3>
-            <p class="card-desc">うちは一族が持つ写輪眼のすべての段階と、各形態が持つ固有能力を網羅的に解説します。</p>
-            <span class="read-more">続きを読む →</span>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CENTER SEAL DECORATION -->
-  <div class="center-seal">
-    <svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="110" cy="110" r="10"  stroke="#FF6B00" stroke-width="2.5"/>
-      <circle cx="110" cy="110" r="25"  stroke="#FF6B00" stroke-width="2"/>
-      <circle cx="110" cy="110" r="45"  stroke="#FF6B00" stroke-width="1.5"/>
-      <circle cx="110" cy="110" r="68"  stroke="#FF6B00" stroke-width="1.2"/>
-      <circle cx="110" cy="110" r="93"  stroke="#FF6B00" stroke-width="1"/>
-      <circle cx="110" cy="110" r="108" stroke="#FF6B00" stroke-width="0.7"/>
-      <line x1="110" y1="2"   x2="110" y2="218" stroke="#FF6B00" stroke-width="0.6" opacity="0.5"/>
-      <line x1="2"   y1="110" x2="218" y2="110" stroke="#FF6B00" stroke-width="0.6" opacity="0.5"/>
-      <line x1="32"  y1="32"  x2="188" y2="188" stroke="#FF6B00" stroke-width="0.4" opacity="0.35"/>
-      <line x1="188" y1="32"  x2="32"  y2="188" stroke="#FF6B00" stroke-width="0.4" opacity="0.35"/>
-      <line x1="110" y1="2"   x2="188" y2="188" stroke="#FF6B00" stroke-width="0.3" opacity="0.25"/>
-      <line x1="110" y1="2"   x2="32"  y2="188" stroke="#FF6B00" stroke-width="0.3" opacity="0.25"/>
-    </svg>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p class="footer-logo">NARUTO FAN</p>
-    <ul class="footer-nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-    <p class="footer-text">
-      ファンによるファンのためのNARUTOサイト<br>
-      NARUTOは岸本斉史先生の著作物です。このサイトは非公式のファンサイトです。<br>
-      © 2025 NARUTO FAN — All fan content
-    </p>
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-mark">Fan Archive</span>
+      <span class="footer-flowers">✾ · ✿ · ❀</span>
+      <span class="footer-copy">© Fan Log — 無職転生</span>
+    </div>
   </footer>
 
 </body>
