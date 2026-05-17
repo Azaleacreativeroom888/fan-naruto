@@ -3,143 +3,366 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NARUTO Fan Log</title>
+  <title>Gallery — NARUTO Fan Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", sans-serif;
-      background-color: #994d00;
-      color: #eee;
+    :root {
+      --bg:          #0e0c09;
+      --bg-warm:     #141008;
+      --bg-card:     #1a1408;
+      --bg-hover:    #221a0a;
+      --border:      #3a2c10;
+      --border-soft: #5a4418;
+      --text-main:   #e8d4a0;
+      --text-sub:    #a08840;
+      --text-dim:    #5a4820;
+      --orange:      #e86820;
+      --orange-dark: #a04010;
+      --orange-glow: #ff8c38;
+      --red:         #9a2010;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      line-height: 1.9;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%,   rgba(220,100,20,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 90% 75%,  rgba(180,60,10,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 25% 20% at 5%  55%,  rgba(200,80,15,0.05) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    header, .container, footer { position: relative; z-index: 1; }
+
+    @keyframes sway {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim    { animation: fadeUp 0.7s ease both; }
+    .anim-d1 { animation-delay: 0.07s; }
+    .anim-d2 { animation-delay: 0.14s; }
+    .anim-d3 { animation-delay: 0.21s; }
+    .anim-d4 { animation-delay: 0.28s; }
+    .anim-d5 { animation-delay: 0.35s; }
+
+    /* ── HEADER ── */
     header {
-      padding: 20px;
+      padding: 70px 20px 52px;
       text-align: center;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header-ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 18px;
+    }
+
+    .ornament-line {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--orange-dark));
+    }
+    .ornament-line.rev {
+      background: linear-gradient(to left, transparent, var(--orange-dark));
+    }
+
+    .ornament-diamond {
+      width: 5px; height: 5px;
+      border: 1px solid var(--orange-dark);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+
+    .ornament-text {
+      font-family: 'Cinzel', serif;
+      font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em;
+    }
+
+    .site-kana {
+      font-size: 10px; letter-spacing: 0.45em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 2px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 600; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 4px;
+      text-shadow: 0 0 40px rgba(230,100,20,0.35), 0 2px 2px rgba(0,0,0,0.8);
     }
 
+    .title-sub {
+      font-size: 10px; letter-spacing: 0.5em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px;
+    }
+
+    .deco-topleft {
+      position: absolute; top: 16px; left: 20px;
+      font-size: 16px; color: var(--orange-dark); opacity: 0.3;
+      animation: sway 8s ease-in-out infinite;
+    }
+    .deco-topright {
+      position: absolute; top: 16px; right: 20px;
+      font-size: 14px; color: var(--red); opacity: 0.22;
+      animation: sway 10s ease-in-out infinite reverse;
+    }
+
+    .leaf-stamp {
+      position: absolute; bottom: -18px; left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 36px; z-index: 2;
+    }
+    .leaf-stamp svg { width: 100%; height: 100%; opacity: 0.22; }
+
+    /* ── NAV ── */
     nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
+      display: inline-flex;
+      border: 1px solid var(--border);
+      overflow: hidden; border-radius: 2px;
     }
 
     nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 14px;
+      color: var(--text-sub); text-decoration: none;
+      font-size: 9px; letter-spacing: 0.4em;
+      font-family: 'Cinzel', serif;
+      padding: 7px 22px;
+      transition: color 0.3s, background 0.3s;
+      border-right: 1px solid var(--border);
     }
+    nav a:last-child { border-right: none; }
+    nav a:hover { color: var(--orange-glow); background: var(--bg-hover); }
+    nav a.active { color: var(--orange); }
 
-    nav a:hover {
-      color: #fff;
-    }
-
+    /* ── CONTAINER ── */
     .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 88px;
     }
 
-    .intro {
-      margin-bottom: 30px;
-      line-height: 1.6;
-      color: #ccc;
+    /* ── PAGE TITLE ── */
+    .page-title {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 40px;
+    }
+    .page-title h2 {
+      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.5em; color: var(--text-sub);
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .section-deco { font-size: 12px; color: var(--orange-dark); }
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border-soft), transparent);
     }
 
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      border-left: 4px solid #888;
-      padding-left: 10px;
-      margin-bottom: 15px;
-    }
-
-    .post {
-      margin-bottom: 15px;
-      padding: 10px;
-      background-color: #663300;
-      border-radius: 5px;
-    }
-
-    .post a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .post p {
-      margin: 5px 0 0;
-      font-size: 13px;
-      color: #aaa;
-    }
-
+    /* ── GALLERY GRID ── */
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 5px;
-    }
-
+    /* ── GALLERY ITEM ── */
     .item {
-      background-color: #663300;
-      padding: 10px;
-      border-radius: 5px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
-    .item img {
+    .item:hover {
+      border-color: var(--orange-dark);
+      box-shadow: 0 6px 32px rgba(200,80,10,0.20);
+    }
+
+    /* image wrapper keeps aspect ratio, clips overflow */
+    .item-img {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--bg-warm);
+    }
+
+    .item-img img {
       width: 100%;
-      border-radius: 5px;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.45) saturate(0.6) brightness(0.82) hue-rotate(-10deg);
+      transition: filter 0.4s ease, transform 0.5s ease;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #333;
+    .item:hover .item-img img {
+      filter: sepia(0.2) saturate(0.85) brightness(0.95) hue-rotate(-5deg);
+      transform: scale(1.04);
+    }
+
+    /* placeholder when no image */
+    .item-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+    }
+
+    .ph-icon  { font-size: 26px; opacity: 0.18; }
+    .ph-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px; letter-spacing: 0.35em; color: var(--text-dim);
+    }
+
+    /* top accent line on hover */
+    .item::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--orange), var(--red));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+      z-index: 1;
+    }
+    .item:hover::before { transform: scaleX(1); }
+
+    /* caption */
+    .caption {
+      padding: 12px 14px 13px;
       font-size: 12px;
-      color: #777;
+      color: var(--text-sub);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+    }
+
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 800px; margin: 0 auto;
+    }
+
+    .footer-mark {
+      font-family: 'Cinzel', serif; font-size: 12px;
+      color: var(--text-dim); letter-spacing: 0.3em;
+    }
+
+    .footer-seals {
+      font-size: 12px; color: var(--orange-dark);
+      letter-spacing: 0.4em; opacity: 0.5;
+    }
+
+    .footer-copy {
+      font-family: 'Cinzel', serif; font-size: 10px;
+      color: var(--text-dim); letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>NARUTO Fan Log</h1>
-    <nav>
+    <div class="deco-topleft">🍃</div>
+    <div class="deco-topright">⚡</div>
+
+    <div class="header-ornament anim">
+      <div class="ornament-line rev"></div>
+      <div class="ornament-diamond"></div>
+      <span class="ornament-text">fan archive</span>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
+    <h1 class="anim anim-d2">NARUTO Fan Log</h1>
+    <div class="title-sub anim anim-d3">Naruto Uzumaki · Personal Archive</div>
+
+    <nav class="anim anim-d4">
       <a href="index.html">HOME</a>
       <a href="blog.html">BLOG</a>
-      <a href="gallery.html">GALLERY</a>
+      <a href="gallery.html" class="active">GALLERY</a>
       <a href="about.html">ABOUT</a>
     </nav>
+
+    <div class="leaf-stamp">
+      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <circle cx="18" cy="18" r="16" stroke="#e86820" stroke-width="1.2"/>
+        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z"
+              fill="#e86820" opacity="0.6"/>
+        <circle cx="18" cy="18" r="2" fill="#e86820" opacity="0.8"/>
+      </svg>
+    </div>
   </header>
 
   <div class="container">
+
+    <div class="page-title anim anim-d5">
+      <span class="section-deco">✦</span>
+      <h2>Illustration</h2>
+      <div class="section-line"></div>
+    </div>
+
     <div class="gallery">
 
-      <div class="item">
-        <img src="img1.jpg" alt="">
+      <div class="item anim anim-d5">
+        <div class="item-img">
+          <img src="img1.jpg" alt="このシーン好きすぎて描いた">
+          <!-- 画像がない場合はコメントアウトして下のプレースホルダーを使用
+          <div class="item-placeholder">
+            <span class="ph-icon">🌀</span>
+            <span class="ph-label">ILLUST · 01</span>
+          </div>
+          -->
+        </div>
         <div class="caption">このシーン好きすぎて描いた</div>
       </div>
 
-      <div class="item">
-        <img src="img2.jpg" alt="">
+      <div class="item anim anim-d5" style="animation-delay:0.42s">
+        <div class="item-img">
+          <img src="img2.jpg" alt="表情が良すぎる">
+        </div>
         <div class="caption">表情が良すぎる</div>
       </div>
 
-      <div class="item">
-        <img src="img3.jpg" alt="">
+      <div class="item anim anim-d5" style="animation-delay:0.49s">
+        <div class="item-img">
+          <img src="img3.jpg" alt="なんとなく描いたけど気に入ってる">
+        </div>
         <div class="caption">なんとなく描いたけど気に入ってる</div>
       </div>
 
@@ -147,7 +370,11 @@
   </div>
 
   <footer>
-    <p>© Fan Log</p>
+    <div class="footer-inner">
+      <span class="footer-mark">Fan Archive</span>
+      <span class="footer-seals">✦ · ✦ · ✦</span>
+      <span class="footer-copy">© Fan Log — NARUTO</span>
+    </div>
   </footer>
 
 </body>
