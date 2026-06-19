@@ -197,6 +197,7 @@
       overflow: hidden;
       position: relative;
       transition: border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
 
     .item:hover {
@@ -204,7 +205,6 @@
       box-shadow: 0 6px 32px rgba(200,80,10,0.20);
     }
 
-    /* image wrapper keeps aspect ratio, clips overflow */
     .item-img {
       position: relative;
       aspect-ratio: 3 / 4;
@@ -226,7 +226,21 @@
       transform: scale(1.04);
     }
 
-    /* placeholder when no image */
+    /* zoom hint overlay */
+    .item-img::after {
+      content: '＋';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      color: var(--orange-glow);
+      background: rgba(14,12,9,0.45);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0;
+    }
+    .item:hover .item-img::after { opacity: 1; }
+
     .item-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
@@ -240,7 +254,6 @@
       font-size: 9px; letter-spacing: 0.35em; color: var(--text-dim);
     }
 
-    /* top accent line on hover */
     .item::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0;
@@ -253,13 +266,144 @@
     }
     .item:hover::before { transform: scaleX(1); }
 
-    /* caption */
     .caption {
       padding: 12px 14px 13px;
       font-size: 12px;
       color: var(--text-sub);
       line-height: 1.7;
       border-top: 1px solid var(--border);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lb-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(8,6,4,0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lb-overlay.open {
+      display: flex;
+      animation: lbFadeIn 0.25s ease both;
+    }
+
+    @keyframes lbFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .lb-inner {
+      position: relative;
+      max-width: min(680px, 92vw);
+      width: 100%;
+      animation: lbScaleIn 0.28s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes lbScaleIn {
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    /* top ornament bar */
+    .lb-inner::before {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--orange), var(--red), transparent);
+      border-radius: 2px 2px 0 0;
+      margin-bottom: 0;
+    }
+
+    .lb-img-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-top: none;
+      overflow: hidden;
+    }
+
+    .lb-img-wrap img {
+      display: block;
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+    }
+
+    .lb-caption {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-top: 1px solid var(--border);
+      padding: 14px 20px;
+      font-size: 12px;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .lb-caption-text {
+      font-family: 'Noto Serif JP', serif;
+      line-height: 1.7;
+    }
+
+    .lb-counter {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* close button */
+    .lb-close {
+      position: absolute;
+      top: -14px; right: -14px;
+      width: 32px; height: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 50%;
+      color: var(--text-sub);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1;
+    }
+    .lb-close:hover {
+      color: var(--orange-glow);
+      border-color: var(--orange-dark);
+      background: var(--bg-hover);
+    }
+
+    /* prev / next */
+    .lb-nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 2px;
+      color: var(--text-sub);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .lb-nav:hover {
+      color: var(--orange-glow);
+      border-color: var(--orange-dark);
+      background: var(--bg-hover);
+    }
+    .lb-prev { right: calc(100% + 10px); }
+    .lb-next { left:  calc(100% + 10px); }
+
+    @media (max-width: 600px) {
+      .lb-prev, .lb-next { display: none; }
+      .lb-inner { max-width: 100%; }
     }
 
     /* ── FOOTER ── */
@@ -339,35 +483,49 @@
 
     <div class="gallery">
 
-      <div class="item anim anim-d5">
+      <div class="item anim anim-d5"
+           data-src="NARUTOサイト①.jpg"
+           data-caption="ちょっと悲しい感じが良い。">
         <div class="item-img">
           <img src="NARUTOサイト①.jpg" alt="うずまきナルト">
-          <div class="item-placeholder">
-            <span class="ph-icon">🌀</span>
-            <span class="ph-label">うずまきナルト。</span>
-          </div>
         </div>
         <div class="caption">ちょっと悲しい感じが良い。</div>
       </div>
 
-      <div class="item anim anim-d5">
+      <div class="item anim anim-d5" style="animation-delay:0.42s"
+           data-src="illustshikamaru.jpg"
+           data-caption="シカマル最高">
         <div class="item-img">
           <img src="illustshikamaru.jpg" alt="シカマル最高">
-          <div class="item-placeholder">
-            <span class="ph-icon">🌀</span>
-            <span class="ph-label">シカマル01</span>
-          </div>
         </div>
         <div class="caption">シカマル最高</div>
       </div>
 
-      <div class="item anim anim-d5" style="animation-delay:0.49s">
+      <div class="item anim anim-d5" style="animation-delay:0.49s"
+           data-src="img3.jpg"
+           data-caption="なんとなく描いたけど気に入ってる">
         <div class="item-img">
           <img src="img3.jpg" alt="なんとなく描いたけど気に入ってる">
         </div>
         <div class="caption">なんとなく描いたけど気に入ってる</div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lb-overlay" id="lb" role="dialog" aria-modal="true" aria-label="イラスト拡大表示">
+    <div class="lb-inner" id="lb-inner">
+      <button class="lb-close" id="lb-close" aria-label="閉じる">✕</button>
+      <button class="lb-nav lb-prev" id="lb-prev" aria-label="前へ">‹</button>
+      <button class="lb-nav lb-next" id="lb-next" aria-label="次へ">›</button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="">
+      </div>
+      <div class="lb-caption">
+        <span class="lb-caption-text" id="lb-caption-text"></span>
+        <span class="lb-counter" id="lb-counter"></span>
+      </div>
     </div>
   </div>
 
@@ -378,6 +536,48 @@
       <span class="footer-copy">© Fan Log — NARUTO</span>
     </div>
   </footer>
+
+  <script>
+    const items   = Array.from(document.querySelectorAll('.item[data-src]'));
+    const overlay = document.getElementById('lb');
+    const lbImg   = document.getElementById('lb-img');
+    const lbCap   = document.getElementById('lb-caption-text');
+    const lbCtr   = document.getElementById('lb-counter');
+    let current   = 0;
+
+    function show(index) {
+      current = (index + items.length) % items.length;
+      const el = items[current];
+      lbImg.src = el.dataset.src;
+      lbImg.alt = el.dataset.caption || '';
+      lbCap.textContent = el.dataset.caption || '';
+      lbCtr.textContent = (current + 1) + ' / ' + items.length;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => show(i)));
+
+    document.getElementById('lb-close').addEventListener('click', close);
+    document.getElementById('lb-prev').addEventListener('click', () => show(current - 1));
+    document.getElementById('lb-next').addEventListener('click', () => show(current + 1));
+
+    // overlay背景クリックで閉じる
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+    // キーボード操作
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape')      close();
+      if (e.key === 'ArrowLeft')   show(current - 1);
+      if (e.key === 'ArrowRight')  show(current + 1);
+    });
+  </script>
 
 </body>
 </html>
