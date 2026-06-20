@@ -20,8 +20,8 @@
       --orange:      #e86820;
       --orange-dark: #a04010;
       --orange-glow: #ff8c38;
-      --amber:       #c87820;
       --red:         #9a2010;
+      --blue:        #4a7a8a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,23 +40,19 @@
 
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background:
         radial-gradient(ellipse 60% 40% at 50% 0%,   rgba(220,100,20,0.10) 0%, transparent 60%),
         radial-gradient(ellipse 35% 25% at 90% 75%,  rgba(180,60,10,0.07) 0%, transparent 55%),
         radial-gradient(ellipse 25% 20% at 5%  55%,  rgba(200,80,15,0.05) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     header, .container, footer { position: relative; z-index: 1; }
@@ -84,15 +80,11 @@
       text-align: center;
       border-bottom: 1px solid var(--border);
       position: relative;
-      overflow: visible;
     }
 
     .header-ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 18px;
     }
 
     .ornament-line {
@@ -106,55 +98,40 @@
     .ornament-diamond {
       width: 5px; height: 5px;
       border: 1px solid var(--orange-dark);
-      transform: rotate(45deg);
-      flex-shrink: 0;
+      transform: rotate(45deg); flex-shrink: 0;
     }
 
     .ornament-text {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      color: var(--text-dim);
-      letter-spacing: 0.4em;
+      font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em;
     }
 
     .site-kana {
-      font-size: 10px;
-      letter-spacing: 0.45em;
-      color: var(--text-dim);
-      font-family: 'Cinzel', serif;
-      margin-bottom: 14px;
+      font-size: 10px; letter-spacing: 0.45em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px;
     }
 
     header h1 {
       font-family: 'Cinzel', serif;
       font-size: clamp(30px, 6vw, 52px);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--orange);
-      margin-bottom: 4px;
-      text-shadow:
-        0 0 40px rgba(230,100,20,0.35),
-        0 2px 2px rgba(0,0,0,0.8);
+      font-weight: 600; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 4px;
+      text-shadow: 0 0 40px rgba(230,100,20,0.35), 0 2px 2px rgba(0,0,0,0.8);
     }
 
     .title-sub {
-      font-size: 10px;
-      letter-spacing: 0.5em;
-      color: var(--text-dim);
-      font-family: 'Cinzel', serif;
-      margin-bottom: 32px;
+      font-size: 10px; letter-spacing: 0.5em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px;
     }
 
     .deco-topleft {
       position: absolute; top: 16px; left: 20px;
-      font-size: 16px; color: var(--orange-dark);
-      opacity: 0.3;
+      font-size: 16px; color: var(--orange-dark); opacity: 0.3;
       animation: sway 8s ease-in-out infinite;
     }
     .deco-topright {
       position: absolute; top: 16px; right: 20px;
-      font-size: 14px; color: var(--red);
-      opacity: 0.22;
+      font-size: 14px; color: var(--red); opacity: 0.22;
       animation: sway 10s ease-in-out infinite reverse;
     }
 
@@ -169,19 +146,19 @@
     nav {
       display: inline-flex;
       border: 1px solid var(--border);
-      overflow: hidden;
-      border-radius: 2px;
+      overflow: hidden; border-radius: 2px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     nav a {
-      color: var(--text-sub);
-      text-decoration: none;
-      font-size: 9px;
-      letter-spacing: 0.4em;
+      color: var(--text-sub); text-decoration: none;
+      font-size: 9px; letter-spacing: 0.4em;
       font-family: 'Cinzel', serif;
       padding: 7px 22px;
       transition: color 0.3s, background 0.3s;
       border-right: 1px solid var(--border);
+      white-space: nowrap;
     }
     nav a:last-child { border-right: none; }
     nav a:hover { color: var(--orange-glow); background: var(--bg-hover); }
@@ -189,31 +166,21 @@
 
     /* ── CONTAINER ── */
     .container {
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 60px 24px 88px;
     }
 
     /* ── PAGE TITLE ── */
     .page-title {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 48px;
+      display: flex; align-items: center; gap: 14px; margin-bottom: 40px;
     }
-
     .page-title h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.5em;
-      color: var(--text-sub);
-      text-transform: uppercase;
-      white-space: nowrap;
+      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.5em; color: var(--text-sub);
+      text-transform: uppercase; white-space: nowrap;
     }
-
     .section-deco { font-size: 12px; color: var(--orange-dark); }
-
     .section-line {
       flex: 1; height: 1px;
       background: linear-gradient(to right, var(--border-soft), transparent);
@@ -233,8 +200,7 @@
 
     .about-block::before {
       content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
+      position: absolute; left: 0; top: 0; bottom: 0;
       width: 3px;
       background: linear-gradient(to bottom, var(--orange), var(--red));
     }
@@ -246,38 +212,26 @@
 
     .block-label {
       font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.45em;
+      font-size: 9px; letter-spacing: 0.45em;
       color: var(--orange-dark);
       margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
 
     .block-label::after {
       content: '';
-      flex: 1;
-      height: 1px;
+      flex: 1; height: 1px;
       background: linear-gradient(to right, var(--border), transparent);
     }
 
     .about-block p {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 2.2;
+      font-size: 13px; color: var(--text-sub); line-height: 2.2;
     }
-
-    .about-block p + p {
-      margin-top: 12px;
-    }
+    .about-block p + p { margin-top: 12px; }
 
     /* ── DIVIDER ── */
     .divider {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 40px 0;
+      display: flex; align-items: center; gap: 10px; margin: 44px 0;
     }
     .divider::before, .divider::after {
       content: '';
@@ -288,28 +242,208 @@
       display: flex; align-items: center; gap: 8px;
       font-family: 'Cinzel', serif;
     }
-    .divider-inner span     { font-size: 13px; color: var(--orange-dark); }
-    .divider-inner .sm      { font-size: 9px;  color: var(--text-dim); }
+    .divider-inner span { font-size: 13px; color: var(--orange-dark); }
+    .divider-inner .sm  { font-size: 9px;  color: var(--text-dim); }
+
+    /* ── LINK GRID (relatedサイト) ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .link-card {
+      display: flex; align-items: center; gap: 13px;
+      text-decoration: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 14px 16px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--orange), var(--red));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+
+    .link-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 4px 22px rgba(200,80,10,0.14);
+      transform: translateY(-2px);
+    }
+    .link-card:hover::before { transform: scaleY(1); }
+
+    .link-icon {
+      font-size: 18px;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .link-text { flex: 1; min-width: 0; }
+    .link-name {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+    .link-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .link-arrow {
+      font-size: 15px;
+      color: var(--orange-dark);
+      flex-shrink: 0;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .link-card:hover .link-arrow {
+      transform: translateX(3px);
+      color: var(--orange-glow);
+    }
+
+    @media (max-width: 540px) {
+      .link-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 34px 36px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--orange-dark), transparent);
+    }
+
+    .form-intro {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 2.0;
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .required { color: var(--orange); margin-left: 4px; }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-soft);
+      border-radius: 2px;
+      color: var(--text-main);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 13px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--orange-dark);
+      box-shadow: 0 0 0 3px rgba(232,104,32,0.1);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.8; }
+
+    .field-error {
+      display: block;
+      font-size: 11px;
+      color: var(--orange-glow);
+      margin-top: 6px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--orange-dark), var(--red));
+      border: none;
+      border-radius: 2px;
+      color: var(--bg);
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      padding: 12px 30px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: filter 0.2s, box-shadow 0.2s;
+    }
+    .form-submit:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 4px 20px rgba(200,80,10,0.3);
+    }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .form-success {
+      background: var(--bg-warm);
+      border: 1px solid var(--orange-dark);
+      border-radius: 3px;
+      padding: 16px 20px;
+      text-align: center;
+      color: var(--orange);
+      font-size: 13px;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+    .form-error-global {
+      background: var(--bg-warm);
+      border: 1px solid var(--red);
+      border-radius: 3px;
+      padding: 12px 16px;
+      color: var(--text-sub);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
 
     /* ── NOTE BLOCK ── */
     .note-block {
-      padding: 24px 30px;
+      padding: 22px 30px;
       border: 1px solid var(--border);
       border-radius: 3px;
       background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-warm) 100%);
       position: relative;
       text-align: center;
     }
-
     .note-block::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
+      position: absolute; top: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(to right, transparent, var(--orange-dark), transparent);
-      border-radius: 3px 3px 0 0;
     }
-
     .note-block p {
       font-size: 12px;
       color: var(--text-dim);
@@ -324,37 +458,27 @@
     }
 
     .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 800px;
-      margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 800px; margin: 0 auto;
+      flex-wrap: wrap; gap: 10px;
     }
 
     .footer-mark {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      color: var(--text-dim);
-      letter-spacing: 0.3em;
+      font-family: 'Cinzel', serif; font-size: 12px;
+      color: var(--text-dim); letter-spacing: 0.3em;
     }
-
     .footer-seals {
-      font-size: 12px;
-      color: var(--orange-dark);
-      letter-spacing: 0.4em;
-      opacity: 0.5;
+      font-size: 12px; color: var(--orange-dark);
+      letter-spacing: 0.4em; opacity: 0.5;
     }
-
     .footer-copy {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 0.2em;
+      font-family: 'Cinzel', serif; font-size: 10px;
+      color: var(--text-dim); letter-spacing: 0.2em;
     }
 
     @media (max-width: 600px) {
       .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
-      .about-block  { padding: 24px 20px; }
+      .about-block, .form-card { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -378,9 +502,9 @@
 
     <nav class="anim anim-d4">
       <a href="index.html">HOME</a>
-      <a href="blog.html">BLOG</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="about.html" class="active">ABOUT</a>
+      <a href="ranking.html">RANKING</a>
+      <a href="blog.html">COLUMN</a>
+      <a href="about.html" class="active">LINKS</a>
     </nav>
 
     <div class="leaf-stamp">
@@ -397,36 +521,155 @@
 
     <div class="page-title anim anim-d5">
       <span class="section-deco">✦</span>
-      <h2>About</h2>
+      <h2>Links &amp; Contact</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="about-block anim anim-d5">
       <div class="block-label">このサイトについて</div>
       <p>
-        このサイトは『NARUTO』が好きすぎて、好きなシーンや感情を自由に語るために作りました。
+        このサイトは『NARUTO』が好きすぎて、好きなシーンや感情を自由に語るために作ったファンログです。
+        正しい考察や深読みというより、「ここ好き」「このシーンなんか泣ける」という、感覚ベースの記録を大事にしています。
       </p>
       <p>
-        解釈を押し付けるというより、「なんか分からないけど好き」を大事にしています。
-      </p>
-    </div>
-
-    <div class="about-block anim anim-d5" style="animation-delay:0.42s">
-      <div class="block-label">管理人について</div>
-      <p>
-        イラストを描きながら、気になったことをゆるく言語化しています。
+        更新は気まぐれですが、イラストやちょっとした感想を、思い立ったときにゆるく置いていくスタイルでやっています。
+        間違いや勘違いもあるかもしれませんが、一つのファンの記録として読んでいただけたら嬉しいです。
       </p>
       <p>
-        更新は気まぐれですが、続けることを目標にしています。
+        ご連絡は下のリンク、または一番下のお問い合わせフォームからどうぞ。
+        感想や「ここも好き」みたいなメッセージも大歓迎です。
       </p>
     </div>
 
     <div class="divider">
       <div class="divider-inner">
-        <span>✦</span>
-        <span class="sm">· · ·</span>
-        <span>✦</span>
+        <span>✦</span><span class="sm">· · ·</span><span>✦</span>
       </div>
+    </div>
+
+    <!-- SNS -->
+    <div class="page-title">
+      <span class="section-deco">💬</span>
+      <h2>SNS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://bsky.app/" target="_blank" rel="noopener">
+        <div class="link-icon">🦋</div>
+        <div class="link-text">
+          <span class="link-name">Bluesky</span>
+          <span class="link-desc">近況・更新のお知らせ</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+      <a class="link-card" href="https://www.goodreads.com/" target="_blank" rel="noopener">
+        <div class="link-icon">📚</div>
+        <div class="link-text">
+          <span class="link-name">Goodreads</span>
+          <span class="link-desc">読書記録・レビュー</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+      <a class="link-card" href="https://www.instagram.com/" target="_blank" rel="noopener">
+        <div class="link-icon">📷</div>
+        <div class="link-text">
+          <span class="link-name">Instagram</span>
+          <span class="link-desc">イラスト・写真など</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+      <a class="link-card" href="https://twitter.com/" target="_blank" rel="noopener">
+        <div class="link-icon">𝕏</div>
+        <div class="link-text">
+          <span class="link-name">Twitter / X</span>
+          <span class="link-desc">つぶやき・実況</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="divider">
+      <div class="divider-inner">
+        <span>✦</span><span class="sm">· · ·</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- 関連サイト -->
+    <div class="page-title">
+      <span class="section-deco">🏠</span>
+      <h2>Related Sites</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://example.com/the-page-turner/" target="_blank" rel="noopener">
+        <div class="link-icon">📖</div>
+        <div class="link-text">
+          <span class="link-name">The Page Turner</span>
+          <span class="link-desc">洋書レビューサイト</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+      <a class="link-card" href="https://www.amazon.co.jp/" target="_blank" rel="noopener">
+        <div class="link-icon">🛒</div>
+        <div class="link-text">
+          <span class="link-name">Amazon.co.jp</span>
+          <span class="link-desc">レビュー本の購入先</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+      <a class="link-card" href="https://www.bookdepository.com/" target="_blank" rel="noopener">
+        <div class="link-icon">📦</div>
+        <div class="link-text">
+          <span class="link-name">Book Depository</span>
+          <span class="link-desc">洋書の購入におすすめ</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+    </div>
+
+    <div class="divider">
+      <div class="divider-inner">
+        <span>✦</span><span class="sm">· · ·</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- お問い合わせフォーム -->
+    <div class="page-title">
+      <span class="section-deco">✉</span>
+      <h2>Contact Form</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="form-card">
+      <p class="form-intro">
+        ご質問・ご感想などはこちらからどうぞ。<br>
+        返信は気まぐれですが、必ず目を通しています。
+      </p>
+
+      <div data-fs-success class="form-success" style="display:none;">
+        ✉ メッセージを送信しました。ありがとうございます！
+      </div>
+      <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+      <form id="contact-form">
+        <div class="form-group">
+          <label class="form-label" for="name">お名前</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="名前">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+          <span class="field-error" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="メッセージを入力してください…" rows="6" required></textarea>
+          <span class="field-error" id="msg-error"></span>
+        </div>
+        <button class="form-submit" type="submit">送信する</button>
+      </form>
     </div>
 
     <div class="note-block">
@@ -445,6 +688,16 @@
       <span class="footer-copy">© Fan Log — NARUTO</span>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const success = document.querySelector('[data-fs-success]');
+      success.style.display = 'block';
+      this.reset();
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
 
 </body>
 </html>
