@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラランキング１巻 — NARUTO Fan Log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #0e0c09;
+      --bg-warm:     #141008;
+      --bg-card:     #1a1408;
+      --bg-hover:    #221a0a;
+      --border:      #3a2c10;
+      --border-soft: #5a4418;
+      --text-main:   #e8d4a0;
+      --text-sub:    #a08840;
+      --text-dim:    #5a4820;
+      --orange:      #e86820;
+      --orange-dark: #a04010;
+      --orange-glow: #ff8c38;
+      --red:         #9a2010;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      line-height: 1.9;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%,   rgba(220,100,20,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 25% at 90% 75%,  rgba(180,60,10,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 25% 20% at 5%  55%,  rgba(200,80,15,0.05) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    header, .container, footer { position: relative; z-index: 1; }
+
+    @keyframes sway {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim    { animation: fadeUp 0.7s ease both; }
+    .anim-d1 { animation-delay: 0.07s; }
+    .anim-d2 { animation-delay: 0.14s; }
+    .anim-d3 { animation-delay: 0.21s; }
+    .anim-d4 { animation-delay: 0.28s; }
+    .anim-d5 { animation-delay: 0.35s; }
+
+    /* ── HEADER ── */
+    header {
+      padding: 70px 20px 52px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header-ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 18px;
+    }
+
+    .ornament-line {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--orange-dark));
+    }
+    .ornament-line.rev {
+      background: linear-gradient(to left, transparent, var(--orange-dark));
+    }
+
+    .ornament-diamond {
+      width: 5px; height: 5px;
+      border: 1px solid var(--orange-dark);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+
+    .ornament-text {
+      font-family: 'Cinzel', serif;
+      font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em;
+    }
+
+    .site-kana {
+      font-size: 10px; letter-spacing: 0.45em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 600; letter-spacing: 0.12em;
+      color: var(--orange); margin-bottom: 4px;
+      text-shadow: 0 0 40px rgba(230,100,20,0.35), 0 2px 2px rgba(0,0,0,0.8);
+    }
+
+    .title-sub {
+      font-size: 10px; letter-spacing: 0.5em;
+      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px;
+    }
+
+    .deco-topleft {
+      position: absolute; top: 16px; left: 20px;
+      font-size: 16px; color: var(--orange-dark); opacity: 0.3;
+      animation: sway 8s ease-in-out infinite;
+    }
+    .deco-topright {
+      position: absolute; top: 16px; right: 20px;
+      font-size: 14px; color: var(--red); opacity: 0.22;
+      animation: sway 10s ease-in-out infinite reverse;
+    }
+
+    .leaf-stamp {
+      position: absolute; bottom: -18px; left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 36px; z-index: 2;
+    }
+    .leaf-stamp svg { width: 100%; height: 100%; opacity: 0.22; }
+
+    /* ── NAV ── */
+    nav {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      overflow: hidden; border-radius: 2px;
+    }
+
+    nav a {
+      color: var(--text-sub); text-decoration: none;
+      font-size: 9px; letter-spacing: 0.4em;
+      font-family: 'Cinzel', serif;
+      padding: 7px 22px;
+      transition: color 0.3s, background 0.3s;
+      border-right: 1px solid var(--border);
+    }
+    nav a:last-child { border-right: none; }
+    nav a:hover { color: var(--orange-glow); background: var(--bg-hover); }
+    nav a.active { color: var(--orange); }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px 88px;
+    }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
+    }
+    .page-title h2 {
+      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.5em; color: var(--text-sub);
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .section-deco { font-size: 12px; color: var(--orange-dark); }
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border-soft), transparent);
+    }
+
+    /* ── REPORT META ── */
+    .report-meta {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 10px; margin: 44px 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-soft), transparent);
+    }
+    .divider-inner { display: flex; align-items: center; gap: 8px; }
+    .divider-inner span { font-size: 13px; color: var(--orange-dark); font-family: 'Cinzel', serif; }
+    .divider-inner .sm  { font-size: 9px; color: var(--text-dim); }
+
+    /* ══════════════════════════════
+       TOP 5 — 番号つきおしゃれカード
+    ══════════════════════════════ */
+    .top5-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .top-card {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .top-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 4px 28px rgba(200,80,10,0.13);
+    }
+
+    /* 左の番号ブロック */
+    .rank-num {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, var(--orange-dark), var(--red));
+      padding: 20px 0;
+      gap: 2px;
+    }
+
+    /* 1位だけ特別に少しだけ明るく */
+    .top-card:first-child .rank-num {
+      background: linear-gradient(180deg, var(--orange), var(--orange-dark));
+    }
+
+    .rank-label {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .rank-number {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* 右のテキストブロック */
+    .rank-body {
+      flex: 1;
+      padding: 20px 24px;
+      border-left: 1px solid var(--border);
+    }
+
+    .rank-name {
+      font-size: 16px;
+      color: var(--text-main);
+      font-weight: 300;
+      font-family: 'Noto Serif JP', serif;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .rank-comment {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 2.0;
+    }
+
+    /* ══════════════════════════════
+       TOP 5以下 — シンプルリスト
+    ══════════════════════════════ */
+    .below-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .below-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .below-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--orange-dark), transparent);
+    }
+
+    .below-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 3px 18px rgba(200,80,10,0.10);
+    }
+
+    .below-body { flex: 1; }
+
+    .below-name {
+      font-size: 14px;
+      color: var(--text-main);
+      font-weight: 300;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .below-comment {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 2.0;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 2px;
+      margin-top: 48px;
+      transition: color 0.3s, border-color 0.3s, background 0.3s;
+    }
+    .back-link:hover {
+      color: var(--orange-glow);
+      border-color: var(--border-soft);
+      background: var(--bg-hover);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 20px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 800px; margin: 0 auto; flex-wrap: wrap; gap: 10px;
+    }
+    .footer-mark  { font-family: 'Cinzel', serif; font-size: 12px; color: var(--text-dim); letter-spacing: 0.3em; }
+    .footer-seals { font-size: 12px; color: var(--orange-dark); letter-spacing: 0.4em; opacity: 0.5; }
+    .footer-copy  { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; }
+
+    @media (max-width: 600px) {
+      .rank-num { width: 50px; }
+      .rank-number { font-size: 22px; }
+      .rank-body { padding: 16px 16px; }
+      .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="deco-topleft">🍃</div>
+    <div class="deco-topright">⚡</div>
+    <div class="header-ornament anim">
+      <div class="ornament-line rev"></div>
+      <div class="ornament-diamond"></div>
+      <span class="ornament-text">fan archive</span>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
+    <h1 class="anim anim-d2">NARUTO Fan Log</h1>
+    <div class="title-sub anim anim-d3">Naruto Uzumaki · Personal Archive</div>
+    <nav class="anim anim-d4">
+      <a href="index.html">HOME</a>
+      <a href="blog.html">BLOG</a>
+      <a href="gallery.html" class="active">GALLERY</a>
+      <a href="about.html">ABOUT</a>
+    </nav>
+    <div class="leaf-stamp">
+      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <circle cx="18" cy="18" r="16" stroke="#e86820" stroke-width="1.2"/>
+        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z" fill="#e86820" opacity="0.6"/>
+        <circle cx="18" cy="18" r="2" fill="#e86820" opacity="0.8"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="page-title anim anim-d5">
+      <span class="section-deco">✦</span>
+      <h2>Character Ranking</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="report-meta anim anim-d5">自分的好きな総キャラランキング · １巻時点</div>
+
+    <!-- TOP 5 -->
+    <div class="top5-list">
+
+      <div class="top-card anim anim-d5">
+        <div class="rank-num">
+          <span class="rank-label">NO</span>
+          <span class="rank-number">1</span>
+        </div>
+        <div class="rank-body">
+          <span class="rank-name">うずまきナルト</span>
+          <p class="rank-comment">不器用なのに真っすぐで、なんかほっとけない。みんなに馬鹿にされてもへこたれない姿がすでに好きになってる。</p>
+        </div>
+      </div>
+
+      <div class="top-card anim anim-d5" style="animation-delay:0.42s">
+        <div class="rank-num">
+          <span class="rank-label">NO</span>
+          <span class="rank-number">2</span>
+        </div>
+        <div class="rank-body">
+          <span class="rank-name">はたけカカシ</span>
+          <p class="rank-comment">飄々としてるのに実は深いキャラだろうなってのが伝わってくる。遅刻グセとかミステリアスなとこも好き。</p>
+        </div>
+      </div>
+
+      <div class="top-card anim anim-d5" style="animation-delay:0.49s">
+        <div class="rank-num">
+          <span class="rank-label">NO</span>
+          <span class="rank-number">3</span>
+        </div>
+        <div class="rank-body">
+          <span class="rank-name">奈良シカマル</span>
+          <p class="rank-comment">「めんどくせー」って言いながらちゃんと動くとこが好き。頭の良さの出し方がかっこいい。</p>
+        </div>
+      </div>
+
+      <div class="top-card anim anim-d5" style="animation-delay:0.56s">
+        <div class="rank-num">
+          <span class="rank-label">NO</span>
+          <span class="rank-number">4</span>
+        </div>
+        <div class="rank-body">
+          <span class="rank-name">うちはサスケ</span>
+          <p class="rank-comment">クールで強くて、でも１巻時点ではまだ何か重いもの背負ってそうな感じがする。これから何があるのか気になる。</p>
+        </div>
+      </div>
+
+      <div class="top-card anim anim-d5" style="animation-delay:0.63s">
+        <div class="rank-num">
+          <span class="rank-label">NO</span>
+          <span class="rank-number">5</span>
+        </div>
+        <div class="rank-body">
+          <span class="rank-name">春野サクラ</span>
+          <p class="rank-comment">１巻時点ではまだキャーキャー言ってるけど、なんか変わりそうな予感がある。強くなってほしいと思って読んでる。</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 区切り -->
+    <div class="divider">
+      <div class="divider-inner">
+        <span>✦</span><span class="sm">· · ·</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- TOP 5 以下 -->
+    <div class="page-title">
+      <span class="section-deco">✦</span>
+      <h2>Also good</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="below-list">
+
+      <div class="below-card">
+        <div class="below-body">
+          <span class="below-name">うみのイルカ</span>
+          <p class="below-comment">ナルトをちゃんと見てくれてる大人。あの卒業式のシーンだけで好きになった。</p>
+        </div>
+      </div>
+
+      <div class="below-card">
+        <div class="below-body">
+          <span class="below-name">日向ヒナタ</span>
+          <p class="below-comment">ナルトのこと陰ながら応援してるの、なんかわかる気がして。もっと出てきてほしい。</p>
+        </div>
+      </div>
+
+      <div class="below-card">
+        <div class="below-body">
+          <span class="below-name">三代目火影</span>
+          <p class="below-comment">里のこととナルトのこと、ちゃんと考えてるんだろうなって感じがする。渋い。</p>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back-link" href="gallery.html">← Gallery に戻る</a>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-mark">Fan Archive</span>
+      <span class="footer-seals">✦ · ✦ · ✦</span>
+      <span class="footer-copy">© Fan Log — NARUTO</span>
+    </div>
+  </footer>
+
+</body>
+</html>
