@@ -164,12 +164,13 @@
     .container {
       max-width: 860px;
       margin: 0 auto;
-      padding: 60px 24px 88px;
+      padding: 60px 24px 0;
     }
+    .container:last-of-type { padding-bottom: 88px; }
 
     /* ── PAGE TITLE ── */
     .page-title {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 40px;
+      display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
     }
     .page-title h2 {
       font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
@@ -180,6 +181,74 @@
     .section-line {
       flex: 1; height: 1px;
       background: linear-gradient(to right, var(--border-soft), transparent);
+    }
+
+    /* ── REPORT CARD ── */
+    .report-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      text-decoration: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 18px 22px;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .report-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--orange), var(--red));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.35s ease;
+    }
+
+    .report-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 4px 28px rgba(200,80,10,0.15);
+    }
+    .report-card:hover::before { transform: scaleY(1); }
+
+    .report-num {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--orange-dark);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .report-body { flex: 1; }
+
+    .report-title {
+      display: block;
+      font-size: 14px;
+      color: var(--text-main);
+      font-weight: 300;
+      margin-bottom: 3px;
+    }
+
+    .report-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .report-arrow {
+      font-size: 18px;
+      color: var(--orange-dark);
+      flex-shrink: 0;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .report-card:hover .report-arrow {
+      transform: translateX(4px);
+      color: var(--orange-glow);
     }
 
     /* ── GALLERY GRID ── */
@@ -213,10 +282,8 @@
     }
 
     .item-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
       filter: sepia(0.45) saturate(0.6) brightness(0.82) hue-rotate(-10deg);
       transition: filter 0.4s ease, transform 0.5s ease;
     }
@@ -226,7 +293,6 @@
       transform: scale(1.04);
     }
 
-    /* zoom hint overlay */
     .item-img::after {
       content: '＋';
       position: absolute; inset: 0;
@@ -237,22 +303,8 @@
       opacity: 0;
       transition: opacity 0.3s;
       font-family: 'Cinzel', serif;
-      letter-spacing: 0;
     }
     .item:hover .item-img::after { opacity: 1; }
-
-    .item-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 12px;
-    }
-
-    .ph-icon  { font-size: 26px; opacity: 0.18; }
-    .ph-label {
-      font-family: 'Cinzel', serif;
-      font-size: 9px; letter-spacing: 0.35em; color: var(--text-dim);
-    }
 
     .item::before {
       content: '';
@@ -280,161 +332,87 @@
       position: fixed; inset: 0; z-index: 9000;
       background: rgba(8,6,4,0.92);
       backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
       padding: 24px;
     }
+    .lb-overlay.open { display: flex; animation: lbFadeIn 0.25s ease both; }
 
-    .lb-overlay.open {
-      display: flex;
-      animation: lbFadeIn 0.25s ease both;
-    }
-
-    @keyframes lbFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .lb-inner {
       position: relative;
-      max-width: min(680px, 92vw);
-      width: 100%;
+      max-width: min(680px, 92vw); width: 100%;
       animation: lbScaleIn 0.28s cubic-bezier(0.22,1,0.36,1) both;
     }
 
     @keyframes lbScaleIn {
       from { opacity: 0; transform: scale(0.92) translateY(12px); }
-      to   { opacity: 1; transform: scale(1)    translateY(0); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* top ornament bar */
     .lb-inner::before {
-      content: '';
-      display: block;
-      height: 2px;
+      content: ''; display: block; height: 2px;
       background: linear-gradient(to right, transparent, var(--orange), var(--red), transparent);
-      border-radius: 2px 2px 0 0;
-      margin-bottom: 0;
     }
 
     .lb-img-wrap {
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
-      border-top: none;
-      overflow: hidden;
+      border-top: none; overflow: hidden;
     }
-
-    .lb-img-wrap img {
-      display: block;
-      width: 100%;
-      max-height: 72vh;
-      object-fit: contain;
-    }
+    .lb-img-wrap img { display: block; width: 100%; max-height: 72vh; object-fit: contain; }
 
     .lb-caption {
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
       border-top: 1px solid var(--border);
-      padding: 14px 20px;
-      font-size: 12px;
+      padding: 14px 20px; font-size: 12px;
       color: var(--text-sub);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
 
-    .lb-caption-text {
-      font-family: 'Noto Serif JP', serif;
-      line-height: 1.7;
-    }
+    .lb-caption-text { font-family: 'Noto Serif JP', serif; line-height: 1.7; }
+    .lb-counter { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.3em; color: var(--text-dim); white-space: nowrap; }
 
-    .lb-counter {
-      font-family: 'Cinzel', serif;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-
-    /* close button */
     .lb-close {
-      position: absolute;
-      top: -14px; right: -14px;
+      position: absolute; top: -14px; right: -14px;
       width: 32px; height: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 50%;
-      color: var(--text-sub);
-      font-size: 16px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: 50%; color: var(--text-sub); font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
-      line-height: 1;
     }
-    .lb-close:hover {
-      color: var(--orange-glow);
-      border-color: var(--orange-dark);
-      background: var(--bg-hover);
-    }
+    .lb-close:hover { color: var(--orange-glow); border-color: var(--orange-dark); background: var(--bg-hover); }
 
-    /* prev / next */
     .lb-nav {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
+      position: absolute; top: 50%; transform: translateY(-50%);
       width: 36px; height: 36px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 2px;
-      color: var(--text-sub);
-      font-size: 16px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: 2px; color: var(--text-sub); font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
-    .lb-nav:hover {
-      color: var(--orange-glow);
-      border-color: var(--orange-dark);
-      background: var(--bg-hover);
-    }
+    .lb-nav:hover { color: var(--orange-glow); border-color: var(--orange-dark); background: var(--bg-hover); }
     .lb-prev { right: calc(100% + 10px); }
     .lb-next { left:  calc(100% + 10px); }
 
-    @media (max-width: 600px) {
-      .lb-prev, .lb-next { display: none; }
-      .lb-inner { max-width: 100%; }
-    }
-
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 20px;
+      border-top: 1px solid var(--border); padding: 32px 20px;
     }
-
     .footer-inner {
       display: flex; justify-content: space-between; align-items: center;
       max-width: 800px; margin: 0 auto;
     }
-
-    .footer-mark {
-      font-family: 'Cinzel', serif; font-size: 12px;
-      color: var(--text-dim); letter-spacing: 0.3em;
-    }
-
-    .footer-seals {
-      font-size: 12px; color: var(--orange-dark);
-      letter-spacing: 0.4em; opacity: 0.5;
-    }
-
-    .footer-copy {
-      font-family: 'Cinzel', serif; font-size: 10px;
-      color: var(--text-dim); letter-spacing: 0.2em;
-    }
+    .footer-mark { font-family: 'Cinzel', serif; font-size: 12px; color: var(--text-dim); letter-spacing: 0.3em; }
+    .footer-seals { font-size: 12px; color: var(--orange-dark); letter-spacing: 0.4em; opacity: 0.5; }
+    .footer-copy { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; }
 
     @media (max-width: 600px) {
       .gallery { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+      .lb-prev, .lb-next { display: none; }
+      .lb-inner { max-width: 100%; }
     }
   </style>
 </head>
@@ -443,7 +421,6 @@
   <header>
     <div class="deco-topleft">🍃</div>
     <div class="deco-topright">⚡</div>
-
     <div class="header-ornament anim">
       <div class="ornament-line rev"></div>
       <div class="ornament-diamond"></div>
@@ -451,77 +428,82 @@
       <div class="ornament-diamond"></div>
       <div class="ornament-line"></div>
     </div>
-
     <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
     <h1 class="anim anim-d2">NARUTO Fan Log</h1>
     <div class="title-sub anim anim-d3">Naruto Uzumaki · Personal Archive</div>
-
     <nav class="anim anim-d4">
       <a href="index.html">HOME</a>
       <a href="blog.html">BLOG</a>
       <a href="gallery.html" class="active">GALLERY</a>
       <a href="about.html">ABOUT</a>
     </nav>
-
     <div class="leaf-stamp">
       <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
         <circle cx="18" cy="18" r="16" stroke="#e86820" stroke-width="1.2"/>
-        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z"
-              fill="#e86820" opacity="0.6"/>
+        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z" fill="#e86820" opacity="0.6"/>
         <circle cx="18" cy="18" r="2" fill="#e86820" opacity="0.8"/>
       </svg>
     </div>
   </header>
 
+  <!-- Report セクション -->
   <div class="container">
-
     <div class="page-title anim anim-d5">
+      <span class="section-deco">✦</span>
+      <h2>Report</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <a class="report-card anim anim-d5" href="report1.html">
+      <span class="report-num">No. 01</span>
+      <div class="report-body">
+        <span class="report-title">自分的好きな総キャラランキング</span>
+        <span class="report-desc">１巻時点 · Top 5 + それ以下</span>
+      </div>
+      <span class="report-arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Illustration セクション -->
+  <div class="container">
+    <div class="page-title anim anim-d5" style="animation-delay:0.42s">
       <span class="section-deco">✦</span>
       <h2>Illustration</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="gallery">
-
-      <div class="item anim anim-d5"
-           data-src="NARUTOサイト①.jpg"
-           data-caption="ちょっと悲しい感じが良い。">
+      <div class="item anim anim-d5" style="animation-delay:0.42s"
+           data-src="NARUTOサイト①.jpg" data-caption="ちょっと悲しい感じが良い。">
         <div class="item-img">
           <img src="NARUTOサイト①.jpg" alt="うずまきナルト">
         </div>
         <div class="caption">ちょっと悲しい感じが良い。</div>
       </div>
-
-      <div class="item anim anim-d5" style="animation-delay:0.42s"
-           data-src="illustshikamaru.jpg"
-           data-caption="シカマル最高">
+      <div class="item anim anim-d5" style="animation-delay:0.49s"
+           data-src="illustshikamaru.jpg" data-caption="シカマル最高">
         <div class="item-img">
           <img src="illustshikamaru.jpg" alt="シカマル最高">
         </div>
         <div class="caption">シカマル最高</div>
       </div>
-
-      <div class="item anim anim-d5" style="animation-delay:0.49s"
-           data-src="img3.jpg"
-           data-caption="なんとなく描いたけど気に入ってる">
+      <div class="item anim anim-d5" style="animation-delay:0.56s"
+           data-src="img3.jpg" data-caption="なんとなく描いたけど気に入ってる">
         <div class="item-img">
           <img src="img3.jpg" alt="なんとなく描いたけど気に入ってる">
         </div>
         <div class="caption">なんとなく描いたけど気に入ってる</div>
       </div>
-
     </div>
   </div>
 
-  <!-- ── LIGHTBOX ── -->
+  <!-- LIGHTBOX -->
   <div class="lb-overlay" id="lb" role="dialog" aria-modal="true" aria-label="イラスト拡大表示">
     <div class="lb-inner" id="lb-inner">
       <button class="lb-close" id="lb-close" aria-label="閉じる">✕</button>
       <button class="lb-nav lb-prev" id="lb-prev" aria-label="前へ">‹</button>
       <button class="lb-nav lb-next" id="lb-next" aria-label="次へ">›</button>
-      <div class="lb-img-wrap">
-        <img id="lb-img" src="" alt="">
-      </div>
+      <div class="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
       <div class="lb-caption">
         <span class="lb-caption-text" id="lb-caption-text"></span>
         <span class="lb-counter" id="lb-counter"></span>
@@ -538,12 +520,12 @@
   </footer>
 
   <script>
-    const items   = Array.from(document.querySelectorAll('.item[data-src]'));
+    const items = Array.from(document.querySelectorAll('.item[data-src]'));
     const overlay = document.getElementById('lb');
-    const lbImg   = document.getElementById('lb-img');
-    const lbCap   = document.getElementById('lb-caption-text');
-    const lbCtr   = document.getElementById('lb-counter');
-    let current   = 0;
+    const lbImg = document.getElementById('lb-img');
+    const lbCap = document.getElementById('lb-caption-text');
+    const lbCtr = document.getElementById('lb-counter');
+    let current = 0;
 
     function show(index) {
       current = (index + items.length) % items.length;
@@ -562,22 +544,16 @@
     }
 
     items.forEach((el, i) => el.addEventListener('click', () => show(i)));
-
     document.getElementById('lb-close').addEventListener('click', close);
     document.getElementById('lb-prev').addEventListener('click', () => show(current - 1));
     document.getElementById('lb-next').addEventListener('click', () => show(current + 1));
-
-    // overlay背景クリックで閉じる
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-
-    // キーボード操作
     document.addEventListener('keydown', e => {
       if (!overlay.classList.contains('open')) return;
-      if (e.key === 'Escape')      close();
-      if (e.key === 'ArrowLeft')   show(current - 1);
-      if (e.key === 'ArrowRight')  show(current + 1);
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
     });
   </script>
-
 </body>
 </html>
