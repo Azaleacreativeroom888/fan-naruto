@@ -85,30 +85,12 @@
       display: flex; align-items: center; justify-content: center;
       gap: 10px; margin-bottom: 18px;
     }
+    .ornament-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--orange-dark)); }
+    .ornament-line.rev { background: linear-gradient(to left, transparent, var(--orange-dark)); }
+    .ornament-diamond { width: 5px; height: 5px; border: 1px solid var(--orange-dark); transform: rotate(45deg); flex-shrink: 0; }
+    .ornament-text { font-family: 'Cinzel', serif; font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em; }
 
-    .ornament-line {
-      width: 60px; height: 1px;
-      background: linear-gradient(to right, transparent, var(--orange-dark));
-    }
-    .ornament-line.rev {
-      background: linear-gradient(to left, transparent, var(--orange-dark));
-    }
-
-    .ornament-diamond {
-      width: 5px; height: 5px;
-      border: 1px solid var(--orange-dark);
-      transform: rotate(45deg); flex-shrink: 0;
-    }
-
-    .ornament-text {
-      font-family: 'Cinzel', serif;
-      font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em;
-    }
-
-    .site-kana {
-      font-size: 10px; letter-spacing: 0.45em;
-      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px;
-    }
+    .site-kana { font-size: 10px; letter-spacing: 0.45em; color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px; }
 
     header h1 {
       font-family: 'Cinzel', serif;
@@ -118,253 +100,120 @@
       text-shadow: 0 0 40px rgba(230,100,20,0.35), 0 2px 2px rgba(0,0,0,0.8);
     }
 
-    .title-sub {
-      font-size: 10px; letter-spacing: 0.5em;
-      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px;
-    }
+    .title-sub { font-size: 10px; letter-spacing: 0.5em; color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px; }
 
-    .deco-topleft {
-      position: absolute; top: 16px; left: 20px;
-      font-size: 16px; color: var(--orange-dark); opacity: 0.3;
-      animation: sway 8s ease-in-out infinite;
-    }
-    .deco-topright {
-      position: absolute; top: 16px; right: 20px;
-      font-size: 14px; color: var(--red); opacity: 0.22;
-      animation: sway 10s ease-in-out infinite reverse;
-    }
+    .deco-topleft { position: absolute; top: 16px; left: 20px; font-size: 16px; color: var(--orange-dark); opacity: 0.3; animation: sway 8s ease-in-out infinite; }
+    .deco-topright { position: absolute; top: 16px; right: 20px; font-size: 14px; color: var(--red); opacity: 0.22; animation: sway 10s ease-in-out infinite reverse; }
 
-    .leaf-stamp {
-      position: absolute; bottom: -18px; left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px; z-index: 2;
-    }
+    .leaf-stamp { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); width: 36px; height: 36px; z-index: 2; }
     .leaf-stamp svg { width: 100%; height: 100%; opacity: 0.22; }
 
-    /* ── NAV ── */
-    nav {
-      display: inline-flex;
-      border: 1px solid var(--border);
-      overflow: hidden; border-radius: 2px;
-    }
-
-    nav a {
-      color: var(--text-sub); text-decoration: none;
-      font-size: 9px; letter-spacing: 0.4em;
-      font-family: 'Cinzel', serif;
-      padding: 7px 22px;
-      transition: color 0.3s, background 0.3s;
-      border-right: 1px solid var(--border);
-    }
+    nav { display: inline-flex; border: 1px solid var(--border); overflow: hidden; border-radius: 2px; }
+    nav a { color: var(--text-sub); text-decoration: none; font-size: 9px; letter-spacing: 0.4em; font-family: 'Cinzel', serif; padding: 7px 22px; transition: color 0.3s, background 0.3s; border-right: 1px solid var(--border); }
     nav a:last-child { border-right: none; }
     nav a:hover { color: var(--orange-glow); background: var(--bg-hover); }
     nav a.active { color: var(--orange); }
 
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px 88px;
-    }
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 24px 88px; }
 
-    /* ── PAGE TITLE ── */
-    .page-title {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
-    }
-    .page-title h2 {
-      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.5em; color: var(--text-sub);
-      text-transform: uppercase; white-space: nowrap;
-    }
+    .page-title { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .page-title h2 { font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; white-space: nowrap; }
     .section-deco { font-size: 12px; color: var(--orange-dark); }
-    .section-line {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, var(--border-soft), transparent);
-    }
+    .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border-soft), transparent); }
 
-    /* ── REPORT META ── */
-    .report-meta {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
-      margin-bottom: 48px;
-    }
+    .report-meta { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.3em; color: var(--text-dim); margin-bottom: 48px; }
 
-    /* ── DIVIDER ── */
-    .divider {
-      display: flex; align-items: center; gap: 10px; margin: 44px 0;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(to right, transparent, var(--border-soft), transparent);
-    }
+    .divider { display: flex; align-items: center; gap: 10px; margin: 44px 0; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--border-soft), transparent); }
     .divider-inner { display: flex; align-items: center; gap: 8px; }
     .divider-inner span { font-size: 13px; color: var(--orange-dark); font-family: 'Cinzel', serif; }
     .divider-inner .sm  { font-size: 9px; color: var(--text-dim); }
 
-    /* ══════════════════════════════
-       TOP 5 — 番号つきおしゃれカード
-    ══════════════════════════════ */
-    .top5-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 0;
-    }
+    /* TOP 5 カード */
+    .top5-list { display: flex; flex-direction: column; gap: 16px; }
 
     .top-card {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
+      display: flex; align-items: stretch;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 3px;
       overflow: hidden;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
+    .top-card:hover { border-color: var(--border-soft); box-shadow: 0 4px 28px rgba(200,80,10,0.13); }
+    .top-card:first-child .rank-num { background: linear-gradient(180deg, var(--orange), var(--orange-dark)); }
 
-    .top-card:hover {
-      border-color: var(--border-soft);
-      box-shadow: 0 4px 28px rgba(200,80,10,0.13);
-    }
-
-    /* 左の番号ブロック */
     .rank-num {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      width: 64px; flex-shrink: 0;
       background: linear-gradient(180deg, var(--orange-dark), var(--red));
-      padding: 20px 0;
-      gap: 2px;
+      padding: 20px 0; gap: 2px;
     }
+    .rank-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.3em; color: rgba(255,255,255,0.5); }
+    .rank-number { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 600; color: #fff; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
 
-    /* 1位だけ特別に少しだけ明るく */
-    .top-card:first-child .rank-num {
-      background: linear-gradient(180deg, var(--orange), var(--orange-dark));
-    }
+    .rank-body { flex: 1; padding: 20px 24px; border-left: 1px solid var(--border); }
 
-    .rank-label {
+    .rank-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+    .rank-name { font-size: 16px; color: var(--text-main); font-weight: 300; font-family: 'Noto Serif JP', serif; }
+    .rank-vol {
       font-family: 'Cinzel', serif;
-      font-size: 8px;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,0.5);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--orange-dark);
+      border: 1px solid var(--border-soft);
+      padding: 1px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
     }
+    .rank-comment { font-size: 12px; color: var(--text-sub); line-height: 2.0; }
 
-    .rank-number {
-      font-family: 'Cinzel', serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-
-    /* 右のテキストブロック */
-    .rank-body {
-      flex: 1;
-      padding: 20px 24px;
-      border-left: 1px solid var(--border);
-    }
-
-    .rank-name {
-      font-size: 16px;
-      color: var(--text-main);
-      font-weight: 300;
-      font-family: 'Noto Serif JP', serif;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .rank-comment {
-      font-size: 12px;
-      color: var(--text-sub);
-      line-height: 2.0;
-    }
-
-    /* ══════════════════════════════
-       TOP 5以下 — シンプルリスト
-    ══════════════════════════════ */
-    .below-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    /* TOP5以下カード */
+    .below-list { display: flex; flex-direction: column; gap: 10px; }
 
     .below-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 22px;
+      display: flex; align-items: flex-start; gap: 0;
+      padding: 15px 22px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 3px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-
     .below-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
       width: 2px;
       background: linear-gradient(to bottom, var(--orange-dark), transparent);
     }
-
-    .below-card:hover {
-      border-color: var(--border-soft);
-      box-shadow: 0 3px 18px rgba(200,80,10,0.10);
-    }
+    .below-card:hover { border-color: var(--border-soft); box-shadow: 0 3px 18px rgba(200,80,10,0.10); }
 
     .below-body { flex: 1; }
-
-    .below-name {
-      font-size: 14px;
-      color: var(--text-main);
-      font-weight: 300;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .below-comment {
-      font-size: 12px;
-      color: var(--text-sub);
-      line-height: 2.0;
-    }
-
-    /* ── BACK LINK ── */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
+    .below-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; flex-wrap: wrap; }
+    .below-name { font-size: 14px; color: var(--text-main); font-weight: 300; }
+    .below-vol {
       font-family: 'Cinzel', serif;
       font-size: 9px;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.2em;
       color: var(--text-dim);
       border: 1px solid var(--border);
-      padding: 8px 20px;
-      border-radius: 2px;
+      padding: 1px 7px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .below-comment { font-size: 12px; color: var(--text-sub); line-height: 2.0; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; font-family: 'Cinzel', serif;
+      font-size: 9px; letter-spacing: 0.35em; color: var(--text-dim);
+      border: 1px solid var(--border); padding: 8px 20px; border-radius: 2px;
       margin-top: 48px;
       transition: color 0.3s, border-color 0.3s, background 0.3s;
     }
-    .back-link:hover {
-      color: var(--orange-glow);
-      border-color: var(--border-soft);
-      background: var(--bg-hover);
-    }
+    .back-link:hover { color: var(--orange-glow); border-color: var(--border-soft); background: var(--bg-hover); }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border); padding: 32px 20px;
-    }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      max-width: 800px; margin: 0 auto; flex-wrap: wrap; gap: 10px;
-    }
+    footer { border-top: 1px solid var(--border); padding: 32px 20px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; flex-wrap: wrap; gap: 10px; }
     .footer-mark  { font-family: 'Cinzel', serif; font-size: 12px; color: var(--text-dim); letter-spacing: 0.3em; }
     .footer-seals { font-size: 12px; color: var(--orange-dark); letter-spacing: 0.4em; opacity: 0.5; }
     .footer-copy  { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; }
@@ -383,11 +232,9 @@
     <div class="deco-topleft">🍃</div>
     <div class="deco-topright">⚡</div>
     <div class="header-ornament anim">
-      <div class="ornament-line rev"></div>
-      <div class="ornament-diamond"></div>
+      <div class="ornament-line rev"></div><div class="ornament-diamond"></div>
       <span class="ornament-text">fan archive</span>
-      <div class="ornament-diamond"></div>
-      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div><div class="ornament-line"></div>
     </div>
     <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
     <h1 class="anim anim-d2">NARUTO Fan Log</h1>
@@ -420,70 +267,64 @@
     <div class="top5-list">
 
       <div class="top-card anim anim-d5">
-        <div class="rank-num">
-          <span class="rank-label">NO</span>
-          <span class="rank-number">1</span>
-        </div>
+        <div class="rank-num"><span class="rank-label">NO</span><span class="rank-number">1</span></div>
         <div class="rank-body">
-          <span class="rank-name">うみのイルカ</span>
+          <div class="rank-header">
+            <span class="rank-name">うみのイルカ</span>
+            <span class="rank-vol">初登場 #1巻</span>
+          </div>
           <p class="rank-comment">イルカ先生は好きだな。問題児のナルトに対して丁寧に指導してあげてるのは偉いし、こんな先生ほしかった。</p>
         </div>
       </div>
 
       <div class="top-card anim anim-d5" style="animation-delay:0.42s">
-        <div class="rank-num">
-          <span class="rank-label">NO</span>
-          <span class="rank-number">2</span>
-        </div>
+        <div class="rank-num"><span class="rank-label">NO</span><span class="rank-number">2</span></div>
         <div class="rank-body">
-          <span class="rank-name">うずまきナルト</span>
+          <div class="rank-header">
+            <span class="rank-name">うずまきナルト</span>
+            <span class="rank-vol">初登場 #1巻</span>
+          </div>
           <p class="rank-comment">だんだんカッコよく見えてくるの不思議。だんだん「よくやった！」ってなる。気持ちのいいキャラ。</p>
         </div>
       </div>
 
       <div class="top-card anim anim-d5" style="animation-delay:0.49s">
-        <div class="rank-num">
-          <span class="rank-label">NO</span>
-          <span class="rank-number">3</span>
-        </div>
+        <div class="rank-num"><span class="rank-label">NO</span><span class="rank-number">3</span></div>
         <div class="rank-body">
-          <span class="rank-name">うちはサスケ</span>
+          <div class="rank-header">
+            <span class="rank-name">うちはサスケ</span>
+            <span class="rank-vol">初登場 #1巻</span>
+          </div>
           <p class="rank-comment">スカした野郎だけど、心の中は熱くて根性がある。カッコいい。</p>
         </div>
       </div>
 
       <div class="top-card anim anim-d5" style="animation-delay:0.56s">
-        <div class="rank-num">
-          <span class="rank-label">NO</span>
-          <span class="rank-number">4</span>
-        </div>
+        <div class="rank-num"><span class="rank-label">NO</span><span class="rank-number">4</span></div>
         <div class="rank-body">
-          <span class="rank-name">猿飛ヒルゼン</span>
+          <div class="rank-header">
+            <span class="rank-name">猿飛ヒルゼン</span>
+            <span class="rank-vol">初登場 #1巻</span>
+          </div>
           <p class="rank-comment">イルカ先生と三代目火影は印象がすごく良い。問題児のナルトに優しくしてあげてるのは本当に聖人。</p>
         </div>
       </div>
 
       <div class="top-card anim anim-d5" style="animation-delay:0.63s">
-        <div class="rank-num">
-          <span class="rank-label">NO</span>
-          <span class="rank-number">5</span>
-        </div>
+        <div class="rank-num"><span class="rank-label">NO</span><span class="rank-number">5</span></div>
         <div class="rank-body">
-          <span class="rank-name">はたけカカシ</span>
+          <div class="rank-header">
+            <span class="rank-name">はたけカカシ</span>
+            <span class="rank-vol">初登場 #1巻</span>
+          </div>
           <p class="rank-comment">最初の自己紹介のところとかイチャイチャパラダイスで頼りないのかな？と思わせてめっちゃ頼りになる。ギャップがカッコいい。</p>
         </div>
       </div>
 
     </div>
 
-    <!-- 区切り -->
-    <div class="divider">
-      <div class="divider-inner">
-        <span>✦</span><span class="sm">· · ·</span><span>✦</span>
-      </div>
-    </div>
+    <div class="divider"><div class="divider-inner"><span>✦</span><span class="sm">· · ·</span><span>✦</span></div></div>
 
-    <!-- TOP 5 以下 -->
     <div class="page-title">
       <span class="section-deco">✦</span>
       <h2>Also good</h2>
@@ -494,294 +335,294 @@
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">森乃イブキ</span>
+          <div class="below-header"><span class="below-name">森乃イブキ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">カッケーーーーーー！！！！こういうキャラ大好きだし、意外と"子供好き"って設定ありそうなキャラ。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">猿飛木の葉丸</span>
+          <div class="below-header"><span class="below-name">猿飛木の葉丸</span><span class="below-vol">初登場 #1巻</span></div>
           <p class="below-comment">木の葉丸はまじで素直だし可愛い。ナルトとは相性が良い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">桃地再不斬</span>
+          <div class="below-header"><span class="below-name">桃地再不斬</span><span class="below-vol">初登場 #2巻</span></div>
           <p class="below-comment">嫌な敵でもあるんだけど、共感もできるキャラ。愛を知ってる。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">白</span>
+          <div class="below-header"><span class="below-name">白</span><span class="below-vol">初登場 #2巻</span></div>
           <p class="below-comment">敵だし、人も簡単に殺すけど、愛を知ってる。可愛い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">風祭モエギ</span>
+          <div class="below-header"><span class="below-name">風祭モエギ</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">可愛い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">伊勢ウドン</span>
+          <div class="below-header"><span class="below-name">伊勢ウドン</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">可愛い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">タヅナ</span>
+          <div class="below-header"><span class="below-name">タヅナ</span><span class="below-vol">初登場 #2巻</span></div>
           <p class="below-comment">酒やけしてそうなおじさんキャラけっこう好き。声優が青野武なのもぴったり。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">夕日紅</span>
+          <div class="below-header"><span class="below-name">夕日紅</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">キャラデザが圧倒的に好き。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">猿飛アスマ</span>
+          <div class="below-header"><span class="below-name">猿飛アスマ</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">ダンディでカッコいい。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">マイト・ガイ</span>
+          <div class="below-header"><span class="below-name">マイト・ガイ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">意外とカッコいいし頼りになりそう。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ロック・リー</span>
+          <div class="below-header"><span class="below-name">ロック・リー</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">めっちゃ強いし段々カッコよく見えてくるの不思議。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">秋道チョウジ</span>
+          <div class="below-header"><span class="below-name">秋道チョウジ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">ちょっと可愛いかも。ワシャワシャしたくなる。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">春野サクラ</span>
+          <div class="below-header"><span class="below-name">春野サクラ</span><span class="below-vol">初登場 #1巻</span></div>
           <p class="below-comment">サスケのことしか考えてないし恋愛脳だけど、人を守りたい気持ちが強い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">日向ネジ</span>
+          <div class="below-header"><span class="below-name">日向ネジ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザは好き。ちょっと気持ちが読めなくて怖い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">犬塚キバ</span>
+          <div class="below-header"><span class="below-name">犬塚キバ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザは好き。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">奈良シカマル</span>
+          <div class="below-header"><span class="below-name">奈良シカマル</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザは好き。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">油女シノ</span>
+          <div class="below-header"><span class="below-name">油女シノ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザは好き。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ドス・キヌタ</span>
+          <div class="below-header"><span class="below-name">ドス・キヌタ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">敵としては嫌いじゃない。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">エビス</span>
+          <div class="below-header"><span class="below-name">エビス</span><span class="below-vol">初登場 #1巻</span></div>
           <p class="below-comment">結構好きなキャラ。１話だけに出てくるにしては印象のあるキャラ。キチっとしてる人も意外とエロは好きだよね。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">はがねコテツ</span>
+          <div class="below-header"><span class="below-name">はがねコテツ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザが印象的。このキャラちょっと好きかも。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">忍亀</span>
+          <div class="below-header"><span class="below-name">忍亀</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">ちょっと可愛い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">山中イノ</span>
+          <div class="below-header"><span class="below-name">山中イノ</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">ずる賢い女って最悪だけどサクラ助けるところはカッコよかった。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ミズキ先生</span>
+          <div class="below-header"><span class="below-name">ミズキ先生</span><span class="below-vol">初登場 #1巻</span></div>
           <p class="below-comment">最初の敵としては良いキャラだったんじゃないかと。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">カイザ</span>
+          <div class="below-header"><span class="below-name">カイザ</span><span class="below-vol">初登場 #3巻</span></div>
           <p class="below-comment">ちょい役なのに印象的で、死んだ理由がカッコ良い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">神月イズモ</span>
+          <div class="below-header"><span class="below-name">神月イズモ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザが印象的。ちょっと怖い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">山城アオバ</span>
+          <div class="below-header"><span class="below-name">山城アオバ</span><span class="below-vol">初登場 #6巻</span></div>
           <p class="below-comment">名前調べるまで「誰やねん」って思ってた。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ツナミ</span>
+          <div class="below-header"><span class="below-name">ツナミ</span><span class="below-vol">初登場 #2巻</span></div>
           <p class="below-comment">お母さんじゃなくて「おかあちゃん」って感じ。母強し。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">我愛羅</span>
+          <div class="below-header"><span class="below-name">我愛羅</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">ヤバい敵って感じする。無口が一番怖いんだよな。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">みたらしアンコ</span>
+          <div class="below-header"><span class="below-name">みたらしアンコ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">こういう元気キャラって逆になんか怪しい。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">テンテン</span>
+          <div class="below-header"><span class="below-name">テンテン</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">キャラデザは可愛いけど影が薄い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">イナリ</span>
-          <p class="below-comment">「クソガキだな」ってイラっとするけど同情もできる。ナルトがガツンと言ってくれて成長する</p>
+          <div class="below-header"><span class="below-name">イナリ</span><span class="below-vol">初登場 #2巻</span></div>
+          <p class="below-comment">「クソガキだな」ってイラっとするけど同情もできる。ナルトがガツンと言ってくれて成長する。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">月光ハヤテ</span>
+          <div class="below-header"><span class="below-name">月光ハヤテ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">目の下のくまが心配。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ギイチ</span>
+          <div class="below-header"><span class="below-name">ギイチ</span><span class="below-vol">初登場 #2巻</span></div>
           <p class="below-comment">橋を作るプロジェクトから脱退するおっちゃん。まあ、気持ちが分からなくもない。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">テマリ</span>
+          <div class="below-header"><span class="below-name">テマリ</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">嫌な女。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">赤胴ヨロイ</span>
+          <div class="below-header"><span class="below-name">赤胴ヨロイ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">影がすごく薄い。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">剣ミスミ</span>
+          <div class="below-header"><span class="below-name">剣ミスミ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">やられ役感が半端ない。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">キン・ツチ</span>
+          <div class="below-header"><span class="below-name">キン・ツチ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">冷笑系の女。でも男共に押されてる感じはする。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">カンクロウ</span>
+          <div class="below-header"><span class="below-name">カンクロウ</span><span class="below-vol">初登場 #4巻</span></div>
           <p class="below-comment">見た目がキモい。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">大蛇丸</span>
+          <div class="below-header"><span class="below-name">大蛇丸</span><span class="below-vol">初登場 #6巻</span></div>
           <p class="below-comment">ホラー映画の幽霊みたいなキモさがある。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ワラジ＆ゾウリ</span>
+          <div class="below-header"><span class="below-name">ワラジ＆ゾウリ</span><span class="below-vol">初登場 #3巻</span></div>
           <p class="below-comment">全く同情ができないヤカラのやられ役。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ガトー</span>
+          <div class="below-header"><span class="below-name">ガトー</span><span class="below-vol">初登場 #3巻</span></div>
           <p class="below-comment">こいつが一番嫌い。国の繁栄も拒む闇社会のドン。</p>
         </div>
       </div>
 
       <div class="below-card">
         <div class="below-body">
-          <span class="below-name">ザク・アブミ</span>
+          <div class="below-header"><span class="below-name">ザク・アブミ</span><span class="below-vol">初登場 #5巻</span></div>
           <p class="below-comment">圧倒的に嫌いかもしれない。冷笑系。</p>
         </div>
       </div>
