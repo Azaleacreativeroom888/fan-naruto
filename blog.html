@@ -14,9 +14,9 @@
       --bg-hover:    #221a0a;
       --border:      #3a2c10;
       --border-soft: #5a4418;
-      --text-main:   #e8d4a0;
-      --text-sub:    #a08840;
-      --text-dim:    #5a4820;
+      --text-main:   #f2e0b8;
+      --text-sub:    #cdb070;
+      --text-dim:    #8a7040;
       --orange:      #e86820;
       --orange-dark: #a04010;
       --orange-glow: #ff8c38;
@@ -81,34 +81,13 @@
       position: relative;
     }
 
-    .header-ornament {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; margin-bottom: 18px;
-    }
+    .header-ornament { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
+    .ornament-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--orange-dark)); }
+    .ornament-line.rev { background: linear-gradient(to left, transparent, var(--orange-dark)); }
+    .ornament-diamond { width: 5px; height: 5px; border: 1px solid var(--orange-dark); transform: rotate(45deg); flex-shrink: 0; }
+    .ornament-text { font-family: 'Cinzel', serif; font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em; }
 
-    .ornament-line {
-      width: 60px; height: 1px;
-      background: linear-gradient(to right, transparent, var(--orange-dark));
-    }
-    .ornament-line.rev {
-      background: linear-gradient(to left, transparent, var(--orange-dark));
-    }
-
-    .ornament-diamond {
-      width: 5px; height: 5px;
-      border: 1px solid var(--orange-dark);
-      transform: rotate(45deg); flex-shrink: 0;
-    }
-
-    .ornament-text {
-      font-family: 'Cinzel', serif;
-      font-size: 9px; color: var(--text-dim); letter-spacing: 0.4em;
-    }
-
-    .site-kana {
-      font-size: 10px; letter-spacing: 0.45em;
-      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px;
-    }
+    .site-kana { font-size: 10px; letter-spacing: 0.45em; color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 14px; }
 
     header h1 {
       font-family: 'Cinzel', serif;
@@ -118,71 +97,28 @@
       text-shadow: 0 0 40px rgba(230,100,20,0.35), 0 2px 2px rgba(0,0,0,0.8);
     }
 
-    .title-sub {
-      font-size: 10px; letter-spacing: 0.5em;
-      color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px;
-    }
+    .title-sub { font-size: 10px; letter-spacing: 0.5em; color: var(--text-dim); font-family: 'Cinzel', serif; margin-bottom: 32px; }
 
-    .deco-topleft {
-      position: absolute; top: 16px; left: 20px;
-      font-size: 16px; color: var(--orange-dark); opacity: 0.3;
-      animation: sway 8s ease-in-out infinite;
-    }
-    .deco-topright {
-      position: absolute; top: 16px; right: 20px;
-      font-size: 14px; color: var(--red); opacity: 0.22;
-      animation: sway 10s ease-in-out infinite reverse;
-    }
+    .deco-topleft { position: absolute; top: 16px; left: 20px; font-size: 16px; color: var(--orange-dark); opacity: 0.3; animation: sway 8s ease-in-out infinite; }
+    .deco-topright { position: absolute; top: 16px; right: 20px; font-size: 14px; color: var(--red); opacity: 0.22; animation: sway 10s ease-in-out infinite reverse; }
 
-    .leaf-stamp {
-      position: absolute; bottom: -18px; left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px; z-index: 2;
-    }
+    .leaf-stamp { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); width: 36px; height: 36px; z-index: 2; }
     .leaf-stamp svg { width: 100%; height: 100%; opacity: 0.22; }
 
-    /* ── NAV ── */
-    nav {
-      display: inline-flex;
-      border: 1px solid var(--border);
-      overflow: hidden; border-radius: 2px;
-    }
-
-    nav a {
-      color: var(--text-sub); text-decoration: none;
-      font-size: 9px; letter-spacing: 0.4em;
-      font-family: 'Cinzel', serif;
-      padding: 7px 22px;
-      transition: color 0.3s, background 0.3s;
-      border-right: 1px solid var(--border);
-    }
+    nav { display: inline-flex; border: 1px solid var(--border); overflow: hidden; border-radius: 2px; }
+    nav a { color: var(--text-sub); text-decoration: none; font-size: 9px; letter-spacing: 0.4em; font-family: 'Cinzel', serif; padding: 7px 22px; transition: color 0.3s, background 0.3s; border-right: 1px solid var(--border); }
     nav a:last-child { border-right: none; }
     nav a:hover { color: var(--orange-glow); background: var(--bg-hover); }
     nav a.active { color: var(--orange); }
 
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px 88px;
-    }
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 24px 88px; }
 
-    /* ── PAGE TITLE ── */
-    .page-title {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 48px;
-    }
-    .page-title h2 {
-      font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.5em; color: var(--text-sub);
-      text-transform: uppercase; white-space: nowrap;
-    }
+    .page-title { display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+    .page-title h2 { font-family: 'Cinzel', serif; font-size: 11px; font-weight: 500; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; white-space: nowrap; }
     .section-deco { font-size: 12px; color: var(--orange-dark); }
-    .section-line {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, var(--border-soft), transparent);
-    }
+    .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border-soft), transparent); }
 
-    /* ── ARTICLE CARD ── */
+    /* ── ARTICLE ── */
     .article {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -205,9 +141,8 @@
       box-shadow: 0 4px 28px rgba(200,80,10,0.14);
     }
 
-    /* article header bar */
     .article-header {
-      padding: 18px 26px 14px 26px;
+      padding: 16px 26px 12px 26px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: baseline;
@@ -233,46 +168,22 @@
       flex-shrink: 0;
     }
 
-    /* article body */
-    .article-body {
-      padding: 20px 26px 24px 26px;
-    }
+    .article-body { padding: 18px 26px 22px 26px; }
 
     .article-body p {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-sub);
-      line-height: 2.2;
+      line-height: 2.3;
     }
 
-    .article-body p + p {
-      margin-top: 14px;
-    }
+    .article-body p + p { margin-top: 14px; }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 20px;
-    }
-
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      max-width: 800px; margin: 0 auto;
-    }
-
-    .footer-mark {
-      font-family: 'Cinzel', serif; font-size: 12px;
-      color: var(--text-dim); letter-spacing: 0.3em;
-    }
-
-    .footer-seals {
-      font-size: 12px; color: var(--orange-dark);
-      letter-spacing: 0.4em; opacity: 0.5;
-    }
-
-    .footer-copy {
-      font-family: 'Cinzel', serif; font-size: 10px;
-      color: var(--text-dim); letter-spacing: 0.2em;
-    }
+    footer { border-top: 1px solid var(--border); padding: 32px 20px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; }
+    .footer-mark { font-family: 'Cinzel', serif; font-size: 12px; color: var(--text-dim); letter-spacing: 0.3em; }
+    .footer-seals { font-size: 12px; color: var(--orange-dark); letter-spacing: 0.4em; opacity: 0.5; }
+    .footer-copy { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; }
 
     @media (max-width: 600px) {
       .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
@@ -285,31 +196,24 @@
   <header>
     <div class="deco-topleft">🍃</div>
     <div class="deco-topright">⚡</div>
-
     <div class="header-ornament anim">
-      <div class="ornament-line rev"></div>
-      <div class="ornament-diamond"></div>
+      <div class="ornament-line rev"></div><div class="ornament-diamond"></div>
       <span class="ornament-text">fan archive</span>
-      <div class="ornament-diamond"></div>
-      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div><div class="ornament-line"></div>
     </div>
-
     <div class="site-kana anim anim-d1">ファンサイト — ナルト</div>
     <h1 class="anim anim-d2">NARUTO Fan Log</h1>
     <div class="title-sub anim anim-d3">Naruto Uzumaki · Personal Archive</div>
-
     <nav class="anim anim-d4">
       <a href="index.html">HOME</a>
       <a href="blog.html" class="active">BLOG</a>
       <a href="gallery.html">GALLERY</a>
       <a href="about.html">ABOUT</a>
     </nav>
-
     <div class="leaf-stamp">
       <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
         <circle cx="18" cy="18" r="16" stroke="#e86820" stroke-width="1.2"/>
-        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z"
-              fill="#e86820" opacity="0.6"/>
+        <path d="M18 6 C10 10, 8 18, 14 22 C10 26, 12 32, 18 30 C24 32, 26 26, 22 22 C28 18, 26 10, 18 6Z" fill="#e86820" opacity="0.6"/>
         <circle cx="18" cy="18" r="2" fill="#e86820" opacity="0.8"/>
       </svg>
     </div>
@@ -324,226 +228,121 @@
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.08.30</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.08.30</span></div>
       <div class="article-body">
-        <p>
-          どうしてもBORUTOを読むのをためらってしまう。ナルトがやられてるところをどうしても見たくないんだよね………。
-          世代交代を描いてるのは良いことだと思うんだけど。
-        </p>
+        <p>どうしてもBORUTOを読むのをためらってしまう。ナルトがやられてるところをどうしても見たくないんだよね………。世代交代を描いてるのは良いことだと思うんだけど。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.08.17</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.08.17</span></div>
       <div class="article-body">
-        <p>
-          めっちゃマイナーキャラの４コマ同人描きたいんだけど、森乃イブキの４コマがいいね０で笑った。
-          たぶんNARUTOのマイナーキャラは需要ないかも。でも描きたい。
-        </p>
+        <p>めっちゃマイナーキャラの４コマ同人描きたいんだけど、森乃イブキの４コマがいいね０で笑った。たぶんNARUTOのマイナーキャラは需要ないかも。でも描きたい。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.08.06</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.08.06</span></div>
       <div class="article-body">
-        <p>
-          森乃イブキ中忍試験以降全くでてこないのにめっちゃ良いキャラだよね。
-        </p>
+        <p>森乃イブキ中忍試験以降全くでてこないのにめっちゃ良いキャラだよね。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.07.30</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.07.30</span></div>
       <div class="article-body">
-        <p>
-          好感度低そうなキャラの二次創作したい（笑）
-          ガトーとかザク・アブミとか
-        </p>
+        <p>好感度低そうなキャラの二次創作したい（笑）ガトーとかザク・アブミとか</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.07.28</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.07.28</span></div>
       <div class="article-body">
-        <p>
-          総キャラランキングは割と使い古されたネタだから、
-          なにか他の企画考えたいな。自分だけができるような。
-        </p>
+        <p>総キャラランキングは割と使い古されたネタだから、なにか他の企画考えたいな。自分だけができるような。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.07.10</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.07.10</span></div>
       <div class="article-body">
-        <p>
-          一話で登場したミズキが早々に退場するんだよね。
-          意外と好きなキャラなんだけど。
-          その後にアスマと紅を倒して脱獄したらしいんだけど、アニメ観てないからその回知らないんだよね。
-          でもPixivってどんな夢小説でも存在するんだなって思ったんだけど、ミズキの夢小説見た時はまじで爆笑した。
-        </p>
+        <p>一話で登場したミズキが早々に退場するんだよね。意外と好きなキャラなんだけど。その後にアスマと紅を倒して脱獄したらしいんだけど、アニメ観てないからその回知らないんだよね。でもPixivってどんな夢小説でも存在するんだなって思ったんだけど、ミズキの夢小説見た時はまじで爆笑した。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.28</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.28</span></div>
       <div class="article-body">
-        <p>
-          中忍試験のとき、あんまりナルトが強そうに見えないんだよね。
-          むしろ頼りなさそう。
-          サスケのほうが強そうというか。
-          そこからの成長が楽しいんだけど、「ナルトってやっぱり弱いのか～」って思ってしまった。
-        </p>
+        <p>中忍試験のとき、あんまりナルトが強そうに見えないんだよね。むしろ頼りなさそう。サスケのほうが強そうというか。そこからの成長が楽しいんだけど、「ナルトってやっぱり弱いのか～」って思ってしまった。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.25</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.25</span></div>
       <div class="article-body">
-        <p>
-          マイト・ガイくらい気楽に生きたい。
-          嫌なことはすぐ忘れるみたいな。
-          鬼鮫のこと忘れるとか……羨ましい。
-          でも、あれはたぶんマイト・ガイが
-          顔を見ずに戦ってるってことだったんだと思うけど。
-          私も人のこと忘れるために足見ながら話そうかな……
-          いや、私がやったらただのコミュ障だけど。
-        </p>
+        <p>マイト・ガイくらい気楽に生きたい。嫌なことはすぐ忘れるみたいな。鬼鮫のこと忘れるとか……羨ましい。でも、あれはたぶんマイト・ガイが顔を見ずに戦ってるってことだったんだと思うけど。私も人のこと忘れるために足見ながら話そうかな……いや、私がやったらただのコミュ障だけど。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.24</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.24</span></div>
       <div class="article-body">
-        <p>
-          そっか。ネジってある意味でいうと「ナルトとヒナタの三角関係」だったのか。
-          三角関係の主人公のライバルは死にがちだよね。
-        </p>
+        <p>そっか。ネジってある意味でいうと「ナルトとヒナタの三角関係」だったのか。三角関係の主人公のライバルは死にがちだよね。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.17</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.17</span></div>
       <div class="article-body">
-        <p>
-          ネジが死んだのは嫌だったかもしれない。
-          岸本斉史先生が「ヒナタとナルトのキューピットになってもらうために戦いで命を落としてもらった」
-          って言ってて、分かるけど……分かるけど、ネジ好きだったからなぁ……
-        </p>
+        <p>ネジが死んだのは嫌だったかもしれない。岸本斉史先生が「ヒナタとナルトのキューピットになってもらうために戦いで命を落としてもらった」って言ってて、分かるけど……分かるけど、ネジ好きだったからなぁ……</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.16</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.16</span></div>
       <div class="article-body">
-        <p>
-          ナルトがオビトみたいにならなかったのって、やっぱ人を信じるところだよね。
-          オビトの後追いをする可能性だって高かった。
-          本来はナルトと同じ志を持ってたからね。
-          でも、オビトと違うのはナルトが底抜けに明るくてポジティブだってこともあるし
-          芯がなにより強い。
-          オビトはナルトと一緒だって思ってるけど、やっぱ、ナルトは曇り一つない主人公なんだよな。
-          だってオビトは仲間のカカシを信じてあげられないんだもん。
-          ナルトだったらどんなときでも仲間は信じるよ。
-        </p>
+        <p>ナルトがオビトみたいにならなかったのって、やっぱ人を信じるところだよね。オビトの後追いをする可能性だって高かった。本来はナルトと同じ志を持ってたからね。でも、オビトと違うのはナルトが底抜けに明るくてポジティブだってこともあるし芯がなにより強い。オビトはナルトと一緒だって思ってるけど、やっぱ、ナルトは曇り一つない主人公なんだよな。だってオビトは仲間のカカシを信じてあげられないんだもん。ナルトだったらどんなときでも仲間は信じるよ。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.12</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.12</span></div>
       <div class="article-body">
-        <p>
-          サスケの初期の「兄を殺すこと」を最終章で重要になるんだけど、その設定が最終章で活きてくるのがすごい。
-          ２部読むと、イタチがすごい好きになる。
-          イタチのサスケに対する愛が……うるっとくる。
-          イタチが人気ランキング２位なだけはある。
-        </p>
+        <p>サスケの初期の「兄を殺すこと」を最終章で重要になるんだけど、その設定が最終章で活きてくるのがすごい。２部読むと、イタチがすごい好きになる。イタチのサスケに対する愛が……うるっとくる。イタチが人気ランキング２位なだけはある。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.11</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.11</span></div>
       <div class="article-body">
-        <p>
-          60巻の中に割とNARUTOで有名なアシスタントさんのNARUTOの絵がいくつかあって「おお！この人知ってるぞ」ってなった。
-          大久保彰の画力凄いな。
-        </p>
+        <p>60巻の中に割とNARUTOで有名なアシスタントさんのNARUTOの絵がいくつかあって「おお！この人知ってるぞ」ってなった。大久保彰の画力凄いな。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.09</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.09</span></div>
       <div class="article-body">
-        <p>
-          尾獣のデザインいいよね。「各々の名前や得意技の一部の名称は歴代の週刊少年ジャンプ掲載作品へのオマージュやギャグに近いものがある。」（Pixiv）ってあって孫悟空は分かるけど、他なんだ？  全く分からなんだが。
-        </p>
+        <p>尾獣のデザインいいよね。「各々の名前や得意技の一部の名称は歴代の週刊少年ジャンプ掲載作品へのオマージュやギャグに近いものがある。」（Pixiv）ってあって孫悟空は分かるけど、他なんだ？ 全く分からんのだが。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.09</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.09</span></div>
       <div class="article-body">
-        <p>
-          ゲンマが意外と活躍するところあるんだよな。キャラデザも結構好き。
-          Pixivの辞書みたら「NARUTOによく出てくるが、名前が思い出せない人の筆頭格。ミズキ先生ではない」って書いてあって笑った。
-          まあ、確かにちょこちょこ出てくるけど名前をあんまり呼ばれないってのがあって、存在を忘れちゃうんだよね。
-          最初読んだときゲンマとハヤテが一緒かと思ってたんだよな。懐かしい。
-          「あれ？  ハヤテって死んだんじゃなかったけ？」ってなった。
-          ハヤテの恋人の卯月夕顔のキャラデザがすごく好きだったな。でも夕顔出てこなくなるんだよな。
-        </p>
+        <p>ゲンマが意外と活躍するところあるんだよな。キャラデザも結構好き。Pixivの辞書みたら「NARUTOによく出てくるが、名前が思い出せない人の筆頭格。ミズキ先生ではない」って書いてあって笑った。まあ、確かにちょこちょこ出てくるけど名前をあんまり呼ばれないってのがあって、存在を忘れちゃうんだよね。最初読んだときゲンマとハヤテが一緒かと思ってたんだよな。懐かしい。「あれ？ ハヤテって死んだんじゃなかったけ？」ってなった。ハヤテの恋人の卯月夕顔のキャラデザがすごく好きだったな。でも夕顔出てこなくなるんだよな。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.02</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.02</span></div>
       <div class="article-body">
-        <p>
-          鮫肌可愛いよな～。ビーに懐いてるのが可愛い。
-          忍び刀七人衆のキャラデザも見たんだけど、結構キャラ濃かった。
-          林檎雨由利が一番好きかも。
-        </p>
+        <p>鮫肌可愛いよな～。ビーに懐いてるのが可愛い。忍び刀七人衆のキャラデザも見たんだけど、結構キャラ濃かった。林檎雨由利が一番好きかも。</p>
       </div>
     </div>
 
     <div class="article anim anim-d5">
-      <div class="article-header">
-        <span class="article-date">2026.06.02</span>
-      </div>
+      <div class="article-header"><span class="article-date">2026.06.02</span></div>
       <div class="article-body">
-        <p>
-          干柿鬼鮫とビーが戦って、鮫肌がビーに懐くシーンが好き。やっぱビー最強だな。
-        </p>
+        <p>干柿鬼鮫とビーが戦って、鮫肌がビーに懐くシーンが好き。やっぱビー最強だな。</p>
       </div>
     </div>
 
@@ -553,11 +352,7 @@
         <span class="article-date">2026.06.02</span>
       </div>
       <div class="article-body">
-        <p>
-          43巻の帯に「高くなってしまって申し訳ございません」って岸本先生のコメントが書いてあるのに未だに500円代なの最強すぎる。
-          （だって他の漫画はもっと高い。）
-          小学生が手が出しやすい値段。
-        </p>
+        <p>43巻の帯に「高くなってしまって申し訳ございません」って岸本先生のコメントが書いてあるのに未だに500円代なの最強すぎる。（だって他の漫画はもっと高い。）小学生が手が出しやすい値段。</p>
       </div>
     </div>
 
@@ -567,13 +362,8 @@
         <span class="article-date">2026.06.01</span>
       </div>
       <div class="article-body">
-        <p>
-          やっぱイタチだよな。
-        </p>
-        <p>
-          第二部になると、イタチがいきなり好きなキャラに自分の中での順位が上がるんだよね。
-          43巻が厚い理由も良く分かる。最高。
-        </p>
+        <p>やっぱイタチだよな。</p>
+        <p>第二部になると、イタチがいきなり好きなキャラに自分の中での順位が上がるんだよね。43巻が厚い理由も良く分かる。最高。</p>
       </div>
     </div>
 
@@ -583,14 +373,8 @@
         <span class="article-date">2026.05.22</span>
       </div>
       <div class="article-body">
-        <p>
-          第二部すごく熱いんだよね！
-          40巻までの第二部の絵は神がかってるんだよな。アニメのNARUTOを参考にしたらしいんだけど、それが良かったのかな。
-        </p>
-        <p>
-          飛段と角都あたりは最高。飛段とか首の断面隠しながらの演出とか凄すぎる。
-          私はコミックス派なんだけど、アニメも履修してみたい。
-        </p>
+        <p>第二部すごく熱いんだよね！40巻までの第二部の絵は神がかってるんだよな。アニメのNARUTOを参考にしたらしいんだけど、それが良かったのかな。</p>
+        <p>飛段と角都あたりは最高。飛段とか首の断面隠しながらの演出とか凄すぎる。私はコミックス派なんだけど、アニメも履修してみたい。</p>
       </div>
     </div>
 
@@ -600,14 +384,8 @@
         <span class="article-date">2026.05.22</span>
       </div>
       <div class="article-body">
-        <p>
-          NARUTOを読み返すと当時の熱気とか匂いとか景色とかを思い出すんだよね。
-          夢中になって読んでたなって。辛いとこもあったけど。
-        </p>
-        <p>
-          いつから辛いことばかりになったのかな……。
-          もっと子供の頃みたいにわーっと笑えればいいのに。
-        </p>
+        <p>NARUTOを読み返すと当時の熱気とか匂いとか景色とかを思い出すんだよね。夢中になって読んでたなって。辛いとこもあったけど。</p>
+        <p>いつから辛いことばかりになったのかな……。もっと子供の頃みたいにわーっと笑えればいいのに。</p>
       </div>
     </div>
 
@@ -617,14 +395,8 @@
         <span class="article-date">2026.05.17</span>
       </div>
       <div class="article-body">
-        <p>
-          漫道コバヤシ観たときは衝撃受けた。
-          「岸本先生が喋ってる！！！」って感動した。
-        </p>
-        <p>
-          また、公式の配信で観たいな〜。アマプラに漫道コバヤシあるからそこに追加してほしい……。
-          サクラが人気ないって話はめっちゃ笑った。私はサクラ好きだけどね。サソリ編で好きになった。
-        </p>
+        <p>漫道コバヤシ観たときは衝撃受けた。「岸本先生が喋ってる！！！」って感動した。</p>
+        <p>また、公式の配信で観たいな〜。アマプラに漫道コバヤシあるからそこに追加してほしい……。サクラが人気ないって話はめっちゃ笑った。私はサクラ好きだけどね。サソリ編で好きになった。</p>
       </div>
     </div>
 
@@ -634,15 +406,8 @@
         <span class="article-date">2026.05.17</span>
       </div>
       <div class="article-body">
-        <p>
-          20巻あたりのサスケをナルト、シカマル、チョウジ、キバ、ネジで追いかけるところが一番好き。
-          やっぱ、ここの作画が神がかってると思う。
-        </p>
-        <p>
-          チョウジがここでめっちゃ活躍してて最高なんだよな。
-          いや、キバも良い………疾風伝になってチョウジとキバがあんまり活躍しなくなっちゃうんだよな～。
-          もうちょっとチョウジとキバの深堀も見たいかも。
-        </p>
+        <p>20巻あたりのサスケをナルト、シカマル、チョウジ、キバ、ネジで追いかけるところが一番好き。やっぱ、ここの作画が神がかってると思う。</p>
+        <p>チョウジがここでめっちゃ活躍してて最高なんだよな。いや、キバも良い………疾風伝になってチョウジとキバがあんまり活躍しなくなっちゃうんだよな～。もうちょっとチョウジとキバの深堀も見たいかも。</p>
       </div>
     </div>
 
@@ -652,15 +417,8 @@
         <span class="article-date">2026.05.17</span>
       </div>
       <div class="article-body">
-        <p>
-          NARUTOの裏テーマが「憎しみの連鎖を断てるのか？」なのも良い
-          だって若い時の憎しみを断ち切れない人っていっぱいいると思う
-        </p>
-        <p>
-          私だっていじめられたことあるし
-          むしろ今の時代いじめられたことない人のほうが少ないと思う
-          だから、今こそNARUTOを読み返したい
-        </p>
+        <p>NARUTOの裏テーマが「憎しみの連鎖を断てるのか？」なのも良い。だって若い時の憎しみを断ち切れない人っていっぱいいると思う。</p>
+        <p>私だっていじめられたことあるし、むしろ今の時代いじめられたことない人のほうが少ないと思う。だから、今こそNARUTOを読み返したい。</p>
       </div>
     </div>
 
@@ -670,31 +428,18 @@
         <span class="article-date">2026.05.08</span>
       </div>
       <div class="article-body">
-        <p>
-          ホロライブの大空スバルとさくらみこがNARUTO配信してたんだけど
-          この二人の素直な配信は心に響く
-        </p>
-        <p>
-          ナルティメットやってみたくなった！！
-          木を登るミニゲームやりたい！！
-        </p>
+        <p>ホロライブの大空スバルとさくらみこがNARUTO配信してたんだけど、この二人の素直な配信は心に響く。</p>
+        <p>ナルティメットやってみたくなった！！木を登るミニゲームやりたい！！</p>
       </div>
     </div>
 
-    <div class="article anim anim-d5" style="animation-delay:0.42s">
+    <div class="article anim anim-d5">
       <div class="article-header">
         <span class="article-title">岸本斉史先生のドラゴンボールが好きすぎる</span>
         <span class="article-date">2026.04.21</span>
       </div>
       <div class="article-body">
-        <p>
-          鳥山明先生の追悼でジャンプ作家が
-          ドラゴンボールの表紙のリバイバルしてたんだけど
-        </p>
-        <p>
-          岸本斉史先生の表紙が上手かった！
-          悟空の顔がナルトっぽかったけど、躍動感あって最高
-        </p>
+        <p>鳥山明先生の追悼でジャンプ作家がドラゴンボールの表紙のリバイバルしてたんだけど、岸本斉史先生の表紙が上手かった！悟空の顔がナルトっぽかったけど、躍動感あって最高。</p>
       </div>
     </div>
 
